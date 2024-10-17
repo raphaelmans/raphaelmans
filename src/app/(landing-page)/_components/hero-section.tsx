@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion'
 import HeroButton from './hero-button'
+import HeroImage from './hero-image'
 
 const heroContent = {
   name: 'Raphael Mansueto',
@@ -16,53 +17,26 @@ export default function Hero() {
   return (
     <div className='relative overflow-hidden bg-background text-foreground'>
       <div className='container relative z-10 mx-auto flex min-h-screen items-center px-4 py-12 sm:px-6 sm:py-16 lg:px-8'>
-        <div className='max-w-3xl'>
-          <motion.h1
-            className='mb-4 text-3xl font-extrabold tracking-tight sm:mb-6 sm:text-4xl md:text-5xl lg:text-6xl'
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
+        <div className='flex w-full flex-col items-center justify-between lg:flex-row'>
+          <motion.div
+            className='max-w-3xl lg:max-w-2xl'
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5 }}
           >
-            <motion.span
-              className='block'
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.2 }}
-            >
-              Hi, I'm
-            </motion.span>
-            <motion.span
-              className='block text-primary'
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.4 }}
-            >
-              {heroContent.name}
-            </motion.span>
-          </motion.h1>
-          <motion.p
-            className='mb-6 text-base text-muted-foreground sm:mb-8 sm:text-lg md:text-xl'
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.6 }}
-          >
-            {heroContent.description}
-          </motion.p>
-          <motion.p
-            className='mb-8 text-xl font-semibold text-primary sm:mb-12 sm:text-2xl md:text-3xl'
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.8 }}
-          >
-            {heroContent.tagline}
-          </motion.p>
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 1 }}
-          >
+            <h1 className='mb-4 text-3xl font-extrabold tracking-tight sm:mb-6 sm:text-4xl md:text-5xl lg:text-6xl'>
+              <span className='block'>Hi, I'm</span>
+              <span className='block text-primary'>{heroContent.name}</span>
+            </h1>
+            <p className='mb-6 text-base text-muted-foreground sm:mb-8 sm:text-lg md:text-xl'>
+              {heroContent.description}
+            </p>
+            <p className='mb-8 text-xl font-semibold text-primary sm:mb-12 sm:text-2xl md:text-3xl'>
+              {heroContent.tagline}
+            </p>
             <HeroButton text={heroContent.ctaText} />
           </motion.div>
+          <HeroImage />
         </div>
       </div>
     </div>

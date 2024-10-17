@@ -14,7 +14,7 @@ import {
 const navigationItems = [
   { href: '/work-experience', label: 'Work Experience', variant: 'ghost' },
   { href: '/blogs', label: 'Blogs', variant: 'ghost' },
-  { href: '/contact', label: 'Contact Me', variant: 'outline' },
+  { href: '/contact-me', label: 'Contact Me', variant: 'outline' },
 ] as const
 
 const MotionLink = motion(Link)
