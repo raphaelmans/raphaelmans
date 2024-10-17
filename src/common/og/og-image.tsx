@@ -11,14 +11,6 @@ export const size = {
 export const contentType = 'image/png'
 
 export default async function OgImage() {
-  const interSemiBold = fetch(new URL('./Inter-SemiBold.ttf', import.meta.url)).then(res =>
-    res.arrayBuffer(),
-  )
-
-  const interBold = fetch(new URL('./Inter-Bold.ttf', import.meta.url)).then(res =>
-    res.arrayBuffer(),
-  )
-
   return new ImageResponse(
     (
       <div
@@ -90,20 +82,6 @@ export default async function OgImage() {
     ),
     {
       ...size,
-      fonts: [
-        {
-          name: 'Inter',
-          data: await interSemiBold,
-          style: 'normal',
-          weight: 600,
-        },
-        {
-          name: 'Inter',
-          data: await interBold,
-          style: 'normal',
-          weight: 700,
-        },
-      ],
     },
   )
 }
