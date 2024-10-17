@@ -11,11 +11,11 @@ const ogImageURL = 'https://www.raphaelmansueto.com/og'
 export const metadata: Metadata = {
   title: 'Raphael Mansueto - Full-Stack Developer',
   description:
-    'Building innovative, scalable solutions that enhance digital experiences and drive growth',
+    'Intelligence-driven, creating reliable solutions focused on scalability and exceptional quality.',
   openGraph: {
     title: 'Raphael Mansueto - Full-Stack Developer',
     description:
-      'Building innovative, scalable solutions that enhance digital experiences and drive growth',
+      'Intelligence-driven, creating reliable solutions focused on scalability and exceptional quality.',
     url: websiteURL,
     siteName: 'Raphael Mansueto',
     images: [
@@ -32,7 +32,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Raphael Mansueto - Full-Stack Developer',
     description:
-      'Building innovative, scalable solutions that enhance digital experiences and drive growth',
+      'Intelligence-driven, creating reliable solutions focused on scalability and exceptional quality.',
     images: [ogImageURL],
   },
 }
