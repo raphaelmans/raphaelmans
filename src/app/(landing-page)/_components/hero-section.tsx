@@ -1,6 +1,3 @@
-'use client'
-
-import { motion } from 'framer-motion'
 import HeroButton from './hero-button'
 import HeroImage from './hero-image'
 
@@ -18,12 +15,7 @@ export default function Hero() {
     <div className='relative overflow-hidden bg-background text-foreground'>
       <div className='container relative z-10 mx-auto flex min-h-screen items-center px-4 py-12 sm:px-6 sm:py-16 lg:px-8'>
         <div className='flex w-full flex-col items-center justify-between lg:flex-row'>
-          <motion.div
-            className='max-w-3xl lg:max-w-2xl'
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.5 }}
-          >
+          <div className='max-w-3xl lg:max-w-2xl'>
             <h1 className='mb-4 text-3xl font-extrabold tracking-tight sm:mb-6 sm:text-4xl md:text-5xl lg:text-6xl'>
               <span className='block'>Hi, I'm</span>
               <span className='block text-primary'>{heroContent.name}</span>
@@ -35,7 +27,7 @@ export default function Hero() {
               {heroContent.tagline}
             </p>
             <HeroButton text={heroContent.ctaText} />
-          </motion.div>
+          </div>
           <HeroImage />
         </div>
       </div>
