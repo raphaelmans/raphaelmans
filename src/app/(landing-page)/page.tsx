@@ -7,8 +7,8 @@ export default function LandingPage() {
   return (
     <>
       <Hero />
-      <ProjectsSection />
-      <BlogSection className='py-4 md:h-screen md:max-h-screen lg:py-16' />
+      <ProjectsSection className='py-4 md:min-h-screen lg:py-16' />
+      <BlogSection className='py-4 md:min-h-screen lg:py-16' />
     </>
   )
 }

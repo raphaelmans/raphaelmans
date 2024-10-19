@@ -30,26 +30,6 @@ const projects: Project[] = [
     githubUrl: 'https://github.com/yourusername/ai-task-manager',
     liveUrl: 'https://ai-task-manager.example.com',
   },
-  {
-    id: '2',
-    title: 'Blockchain Voting System',
-    description:
-      'A secure and transparent voting system built on blockchain technology, ensuring the integrity and immutability of election results. This project demonstrates the application of decentralized ledger technology in creating a tamper-proof voting mechanism, potentially revolutionizing the way we conduct elections.',
-    imageUrl: '/placeholder.svg?height=400&width=600',
-    technologies: ['Solidity', 'Ethereum', 'Web3.js', 'React'],
-    githubUrl: 'https://github.com/yourusername/blockchain-voting',
-    liveUrl: 'https://blockchain-voting.example.com',
-  },
-  {
-    id: '3',
-    title: 'Real-time Collaborative Code Editor',
-    description:
-      'An online code editor that allows multiple users to collaborate in real-time, with features like syntax highlighting and version control. This project showcases the implementation of WebSocket technology for real-time updates, along with a robust backend system to handle concurrent editing and version management.',
-    imageUrl: '/placeholder.svg?height=400&width=600',
-    technologies: ['Next.js', 'Socket.io', 'Monaco Editor', 'PostgreSQL'],
-    githubUrl: 'https://github.com/yourusername/collab-code-editor',
-    liveUrl: 'https://collab-code-editor.example.com',
-  },
 ]
 
 export const projectsSectionId = 'projects'
@@ -57,12 +37,12 @@ export const projectsSectionId = 'projects'
 const MotionCard = motion(Card)
 const MotionImage = motion(Image)
 
-export default function ProjectsSection() {
+export default function ProjectsSection({ className }: { className?: string }) {
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, amount: 0.2 })
 
   return (
-    <section className='py-16' id={projectsSectionId} ref={ref}>
+    <section className={className} id={projectsSectionId} ref={ref}>
       <div className='container mx-auto px-4'>
         <motion.h2
           className='mb-12 text-center text-4xl font-bold text-foreground'
