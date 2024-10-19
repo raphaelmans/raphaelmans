@@ -9,6 +9,7 @@ const HeroButton = ({ text }: { text: string }) => {
     <Button
       size='lg'
       className='group w-full bg-primary text-primary-foreground hover:bg-primary/90 sm:w-auto'
+      type='button'
       onClick={() => {
         const projectsSection = document.getElementById(projectsSectionId)
         if (projectsSection) {
