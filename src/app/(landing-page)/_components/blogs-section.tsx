@@ -52,7 +52,7 @@ const MotionCard = motion(Card)
 const MotionImage = motion(Image)
 
 export default function BlogSection({ className }: { className?: string }) {
-  const ref = useRef(null)
+  const ref = useRef<HTMLDivElement>(null!)
   const isInView = useInView(ref, { once: true, amount: 0.2 })
 
   return (
