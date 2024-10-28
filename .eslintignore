@@ -1,1 +1,2 @@
 tailwind.config.ts
+src/migrations/*
