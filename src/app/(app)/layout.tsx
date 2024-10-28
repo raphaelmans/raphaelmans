@@ -1,7 +1,6 @@
 import React from 'react'
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
-import { ScrollArea } from '@/components/ui/scroll-area'
 import './globals.css'
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter' })
@@ -44,9 +43,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang='en'>
-      <body className={`${inter.className} ${inter.variable} antialiased`}>
-        <ScrollArea className='h-screen w-screen'>{children}</ScrollArea>
-      </body>
+      <body className={`${inter.className} ${inter.variable} antialiased`}>{children}</body>
     </html>
   )
 }
