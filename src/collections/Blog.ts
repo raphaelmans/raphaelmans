@@ -1,4 +1,5 @@
 import type { CollectionConfig } from 'payload'
+import { HTMLConverterFeature, lexicalEditor, lexicalHTML } from '@payloadcms/richtext-lexical'
 
 export const Blog: CollectionConfig = {
   slug: 'blog',
@@ -21,7 +22,11 @@ export const Blog: CollectionConfig = {
       name: 'content',
       type: 'richText',
       required: true,
+      editor: lexicalEditor({
+        features: ({ defaultFeatures }) => [...defaultFeatures, HTMLConverterFeature({})],
+      }),
     },
+    lexicalHTML('content', { name: 'content_html' }),
     {
       name: 'status',
       type: 'select',

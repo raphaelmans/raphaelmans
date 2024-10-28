@@ -140,6 +140,7 @@ export interface Blog {
     };
     [k: string]: unknown;
   };
+  content_html?: string | null;
   status: 'draft' | 'published';
   publishedDate?: string | null;
   featuredImage?: (number | null) | Media;

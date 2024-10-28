@@ -54,6 +54,9 @@ dependencies:
   cross-env:
     specifier: ^7.0.3
     version: 7.0.3
+  date-fns:
+    specifier: ^4.1.0
+    version: 4.1.0
   framer-motion:
     specifier: 12.0.0-alpha.1
     version: 12.0.0-alpha.1(react-dom@19.0.0-rc-69d4b800-20241021)(react@19.0.0-rc-69d4b800-20241021)
@@ -4790,6 +4793,10 @@ packages:
 
   /date-fns@3.3.1:
     resolution: {integrity: sha512-y8e109LYGgoQDveiEBD3DYXKba1jWf5BA8YU1FL5Tvm0BTdEfy54WLCwnuYWZNnzzvALy/QQ4Hov+Q9RVRv+Zw==}
+    dev: false
+
+  /date-fns@4.1.0:
+    resolution: {integrity: sha512-Ukq0owbQXxa/U3EGtsdVBkR1w7KOQ5gIBqdH2hkvknzZPYvBxb/aa6E8L7tmjFtkwZBu3UXBbjIgPo/Ez4xaNg==}
     dev: false
 
   /dateformat@4.6.3:

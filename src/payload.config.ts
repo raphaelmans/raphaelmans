@@ -15,7 +15,7 @@ import { Categories } from './collections/Categories'
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
 
-const config = buildConfig({
+const configPromise = buildConfig({
   admin: {
     user: Users.slug,
     importMap: {
@@ -46,4 +46,4 @@ const config = buildConfig({
     : [],
 })
 
-export default config
+export default configPromise
