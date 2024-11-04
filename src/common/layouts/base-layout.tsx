@@ -4,7 +4,7 @@ import NavigationFooter from '@/features/navigation/components/navigation-footer
 
 const BaseLayout = (props: PropsWithChildren) => {
   return (
-    <div className='relative min-h-screen'>
+    <div className='relative flex min-h-screen flex-col'>
       <div className='absolute left-0 top-0 z-50 mx-auto w-full'>
         <NavigationBar className='w-full' />
       </div>

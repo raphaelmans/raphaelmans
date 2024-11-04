@@ -75,7 +75,7 @@ export default function BlogSection({
               </CardContent>
               <CardFooter className='mt-auto'>
                 <Button asChild className='w-full'>
-                  <Link href={`/blog/${post.id}`}>
+                  <Link href={`/blogs/${post.id}`}>
                     Read More <ArrowRight className='ml-2 h-4 w-4' />
                   </Link>
                 </Button>
