@@ -51,9 +51,10 @@ function Pagination({ currentPage, totalPages }: PaginationProps) {
 export default async function BlogsPage({
   searchParams,
 }: {
-  searchParams: { [key: string]: string | string[] | undefined }
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>
 }) {
-  const page = typeof searchParams.page === 'string' ? parseInt(searchParams.page, 10) : 1
+  const pageParam = (await searchParams).page
+  const page = typeof pageParam === 'string' ? parseInt(pageParam, 10) : 1
   const limit = 6
   const blogPosts = await getBlogPosts(page, limit)
 
