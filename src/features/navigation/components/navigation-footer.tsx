@@ -2,9 +2,9 @@ import Link from 'next/link'
 import { Github, Linkedin, Mail } from 'lucide-react'
 
 const contactLinks = [
-  { name: 'GitHub', icon: Github, href: 'https://github.com/yourusername' },
-  { name: 'LinkedIn', icon: Linkedin, href: 'https://www.linkedin.com/in/yourusername' },
-  { name: 'Email', icon: Mail, href: 'mailto:your.email@example.com' },
+  { name: 'GitHub', icon: Github, href: 'https://github.com/raphaelmans' },
+  { name: 'LinkedIn', icon: Linkedin, href: 'https://www.linkedin.com/in/raphaelmansueto' },
+  { name: 'Email', icon: Mail, href: 'mailto:raphaelmansueto@gmail.com' },
 ]
 
 export default function NavigationFooter() {
