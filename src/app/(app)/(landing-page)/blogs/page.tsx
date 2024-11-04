@@ -6,6 +6,7 @@ import { Button } from '@/components/ui/button'
 import { cn } from '@/lib/utils'
 import configPromise from '@/payload.config'
 import { typeGuardUtils } from '@/common/utils'
+import { appRouter, createUrl } from '@/common/routes'
 
 type PaginationProps = {
   currentPage: number
@@ -38,7 +39,9 @@ function Pagination({ currentPage, totalPages }: PaginationProps) {
           })}
           key={pageNumber}
         >
-          <Link href={`/blogs?page=${pageNumber}`}>{pageNumber}</Link>
+          <Link href={createUrl(appRouter.blogs, { query: { page: pageNumber } })}>
+            {pageNumber}
+          </Link>
         </Button>
       ))}
     </div>
@@ -62,7 +65,11 @@ export default async function BlogsPage({
       <h1 className='mb-8 text-4xl font-bold'>Blog Posts</h1>
       <div className='grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3'>
         {posts.map(post => (
-          <Link key={post.id} href={`/blogs/${post.id}`} className='block'>
+          <Link
+            key={post.id}
+            href={createUrl(appRouter.blogBySlug, { params: { slug: post.id } })}
+            className='block'
+          >
             <div className='overflow-hidden rounded-lg bg-white shadow-md transition-transform duration-300 hover:scale-105'>
               <Image
                 src={

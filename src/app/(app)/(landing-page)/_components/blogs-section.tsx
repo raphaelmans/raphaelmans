@@ -12,6 +12,7 @@ import { Button } from '@/components/ui/button'
 import { cn } from '@/lib/utils'
 import { Blog } from '@/payload-types'
 import { typeGuardUtils } from '@/common/utils'
+import { appRouter, createUrl } from '@/common/routes'
 const MotionCard = motion(Card)
 const MotionImage = motion(Image)
 
@@ -75,7 +76,7 @@ export default function BlogSection({
               </CardContent>
               <CardFooter className='mt-auto'>
                 <Button asChild className='w-full'>
-                  <Link href={`/blogs/${post.id}`}>
+                  <Link href={createUrl(appRouter.blogBySlug, { params: { slug: post.id } })}>
                     Read More <ArrowRight className='ml-2 h-4 w-4' />
                   </Link>
                 </Button>
