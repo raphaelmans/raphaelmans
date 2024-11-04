@@ -29,9 +29,9 @@ export default async function BlogPostPage({ params }: { params: { slug: string 
   }
 
   return (
-    <article className='mx-auto h-full w-full max-w-2xl flex-1 px-4 py-20'>
+    <article className='mx-auto h-full w-full max-w-3xl flex-1 px-4 pb-5 pt-20'>
       <Button variant='ghost' className='mb-6 p-0' asChild>
-        <Link href='/blog' aria-label='Back to blog posts'>
+        <Link href='/blogs' aria-label='Back to blog posts'>
           <ArrowLeft className='mr-2 h-4 w-4' />
           Back to blog posts
         </Link>
