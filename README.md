@@ -1,36 +1,63 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 👨‍💻 Raphael Mansueto
 
-## Getting Started
+**`Next.js Engineer & AI Integration Specialist`**
 
-First, run the development server:
+I craft innovative, scalable web solutions that not only deliver high performance but also incorporate cutting-edge AI capabilities 🤖. I specialize in integrating OpenAI and other AI technologies into websites, enabling businesses to offer smarter, more personalized user experiences. By combining my expertise in Next.js, React.js, PostgreSQL, and modern UI tools like TailwindCSS, ShadcnUI, and Redux Toolkit, I bring powerful and user-focused web applications to life 💻.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+   <p align="left">
+      <a href="https://github.com/raphaelmans?tab=followers">
+         <img alt="followers" title="Follow me on Github" src="https://custom-icon-badges.demolab.com/github/followers/raphaelmans?color=236ad3&labelColor=1155ba&style=for-the-badge&logo=person-add&label=Follow&logoColor=white"/></a>
+      <a href="https://github.com/raphaelmans?tab=repositories&sort=stargazers">
+         <img alt="total stars" title="Total stars on GitHub" src="https://custom-icon-badges.demolab.com/github/stars/raphaelmans?color=55960c&style=for-the-badge&labelColor=488207&logo=star"/></a>
+   </p>
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### 🧰 Languages and Tools
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+<img align="left" alt="TypeScript" width="30px" style="padding-right:10px;" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-plain.svg" />
+<img align="left" alt="Git" width="30px" style="padding-right:10px;" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" />
+<img align="left" alt="HTML" width="30px" style="padding-right:10px;" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-plain.svg" />
+<img align="left" alt="CSS" width="30px" style="padding-right:10px;" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-plain.svg" />
+<img align="left" alt="JavaScript" width="30px" style="padding-right:10px;" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-plain.svg" />
+<img align="left" alt="React" width="30px" style="padding-right:10px;" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" />
+<img align="left" alt="NodeJS" width="30px" style="padding-right:10px;" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" />
+<img align="left" alt="NextJS" width="30px" style="padding-right:10px;" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg" />
+<img align="left" alt="Tailwind" width="30px" style="padding-right:10px;" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-plain.svg" />
+<img align="left" alt="PostgreSQL" width="30px" style="padding-right:10px;" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" />
+<img align="left" alt="Flutter" width="30px" style="padding-right:10px;" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flutter/flutter-original.svg" />
+<img align="left" alt="Dart" width="30px" style="padding-right:10px;" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/dart/dart-original.svg" />
+<br />
 
-## Learn More
+#
 
-To learn more about Next.js, take a look at the following resources:
+### 🚀 Featured Projects
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- 📱 **[filter-catalog](https://github.com/raphaelmans/filter-catalog)** - Typescript React Website deployed to AWS EKS
+- 📱 **[flutter_projects](https://github.com/raphaelmans/flutter_projects)** - Personal projects made to learn Flutter
+- 🛍️ **[ecommerce-react](https://github.com/raphaelmans/ecommerce-react)** - E-commerce website created using ReactJS and NodeJS
+- ✏️ **[simple_scribble_app](https://github.com/raphaelmans/simple_scribble_app)** - Simple Scribble App developed using Flutter
+- ✈️ **[travelapp_workshop](https://github.com/raphaelmans/travelapp_workshop)** - Travel App UI made using Flutter
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+#
 
-## Deploy on Vercel
+### 💼 What I Can Do For You
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- 🤖 **AI-Powered Web Applications**: Seamlessly integrating OpenAI and other AI technologies
+- 🚀 **Scalable Web Applications**: High-performance apps using Next.js and React.js
+- 📱 **Mobile Development**: Cross-platform mobile apps using Flutter and Dart
+- 🎨 **Modern User Interfaces**: Clean, responsive interfaces with TailwindCSS
+- ⚙️ **API & Backend Development**: Robust APIs with Node.js
+- 🗄️ **Database Design**: Effective data management using PostgreSQL
+- ☁️ **Cloud Deployment**: Deployment and optimization on AWS and other platforms
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+#
+
+### 📊 Stats
+
+![Raphael's GitHub stats](https://github-readme-stats.vercel.app/api?username=raphaelmans&show_icons=true&theme=gruvbox)
+
+#
+
+[website]: https://your-website.com
+[linkedin]: https://linkedin.com/in/your-profile
