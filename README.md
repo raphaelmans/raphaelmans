@@ -23,21 +23,10 @@ I craft innovative, scalable web solutions that not only deliver high performanc
 <img align="left" alt="React" width="30px" style="padding-right:10px;" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" />
 <img align="left" alt="NodeJS" width="30px" style="padding-right:10px;" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" />
 <img align="left" alt="NextJS" width="30px" style="padding-right:10px;" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg" />
-<img align="left" alt="Tailwind" width="30px" style="padding-right:10px;" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-plain.svg" />
 <img align="left" alt="PostgreSQL" width="30px" style="padding-right:10px;" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" />
 <img align="left" alt="Flutter" width="30px" style="padding-right:10px;" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flutter/flutter-original.svg" />
 <img align="left" alt="Dart" width="30px" style="padding-right:10px;" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/dart/dart-original.svg" />
 <br />
-
-#
-
-### 🚀 Featured Projects
-
-- 📱 **[filter-catalog](https://github.com/raphaelmans/filter-catalog)** - Typescript React Website deployed to AWS EKS
-- 📱 **[flutter_projects](https://github.com/raphaelmans/flutter_projects)** - Personal projects made to learn Flutter
-- 🛍️ **[ecommerce-react](https://github.com/raphaelmans/ecommerce-react)** - E-commerce website created using ReactJS and NodeJS
-- ✏️ **[simple_scribble_app](https://github.com/raphaelmans/simple_scribble_app)** - Simple Scribble App developed using Flutter
-- ✈️ **[travelapp_workshop](https://github.com/raphaelmans/travelapp_workshop)** - Travel App UI made using Flutter
 
 #
 
@@ -59,5 +48,5 @@ I craft innovative, scalable web solutions that not only deliver high performanc
 
 #
 
-[website]: https://your-website.com
+[website]: https://raphaelmansueto.com
 [linkedin]: https://linkedin.com/in/your-profile
