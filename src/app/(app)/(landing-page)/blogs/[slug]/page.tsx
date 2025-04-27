@@ -1,5 +1,5 @@
-import { notFound } from 'next/navigation'
 import Image from 'next/image'
+import { notFound } from 'next/navigation'
 import { format } from 'date-fns'
 import { getPayload } from 'payload'
 import Link from 'next/link'
@@ -7,6 +7,7 @@ import { ArrowLeft } from 'lucide-react'
 import configPromise from '@/payload.config'
 import { typeGuardUtils } from '@/common/utils'
 import { Button } from '@/components/ui/button'
+import { RichText } from '@/components/RichText'
 
 async function getBlogPost(slug: string) {
   const payload = await getPayload({
@@ -55,10 +56,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
         height={400}
         className='mb-6 h-64 w-full rounded-lg object-cover'
       />
-      <div
-        className='prose max-w-none'
-        dangerouslySetInnerHTML={{ __html: post.content_html || '' }}
-      />
+      <RichText data={post.content} className='prose max-w-none' />
       <div className='mt-8'>
         <h2 className='mb-2 text-xl font-semibold'>Tags</h2>
         <div className='flex flex-wrap gap-2'>

@@ -91,7 +91,7 @@ export default function BlogSection({
           transition={{ duration: 0.5, delay: 0.5 }}
         >
           <Button asChild variant='outline' size='lg'>
-            <Link href='/blog'>
+            <Link href='/blogs'>
               View All Posts <ArrowRight className='ml-2 h-4 w-4' />
             </Link>
           </Button>

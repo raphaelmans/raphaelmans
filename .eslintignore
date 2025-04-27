@@ -1,2 +1,3 @@
 tailwind.config.ts
 src/migrations/*
+src/app/(payload)/admin/importMap.js
