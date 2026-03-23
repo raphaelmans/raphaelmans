@@ -275,7 +275,7 @@ The page tells one story in this order:
 - **Hero subtitle:** I build with AI the way most engineers use linters: always on, deeply integrated. Multi-agent pipelines, LLM orchestration, and RAG systems that run in production, not demos. Based in Cebu, Philippines.
 - **Target audience:** Hiring managers, startup founders, freelance clients on Upwork/LinkedIn
 - **Freelance availability:** Part-time, project-based, flexible hours
-- **Rate target:** $30–50/hr starting (with room to raise quickly based on Ample + VISEO portfolio)
+- **Rate target:** $15/hr starting (build portfolio of freelance clients, raise once established)
 
 ---
 
