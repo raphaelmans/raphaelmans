@@ -1,7 +1,7 @@
 # Raphael Mansueto — Portfolio Knowledgebase
 
 > Single source of truth for the raphaelmansueto.com overhaul.
-> Last updated: March 23, 2026
+> Last updated: March 24, 2026
 
 ---
 
@@ -14,7 +14,7 @@
 - **GitHub:** [raphaelmans](https://github.com/raphaelmans)
 - **LinkedIn:** [raphaelmansueto](https://linkedin.com/in/raphaelmansueto)
 - **X/Twitter:** [raphaeljamesm](https://x.com/raphaeljamesm)
-- **Calendly:** [calendly.com/rethndr/15](https://calendly.com/rethndr/15)
+- **Calendly:** [calendly.com/raphaelmansueto/30min](https://calendly.com/raphaelmansueto/30min)
 - **Personal site:** [raphaelmansueto.com](https://www.raphaelmansueto.com/)
 - **Agency site:** [rethndr.com](https://rethndr.com/) (subtle link only, not featured)
 - **Photo:** exists at `raphaelmans` repo → `public/assets/images/me.jpeg`
@@ -40,7 +40,7 @@
 
 ### 1. VISEO (Contractor) · Digital Asset Settlement Platform
 - **Period:** June 9, 2025 – Present
-- **Title:** Software Engineer (NO "Team Lead" — that was informal responsibility only)
+- **Title:** Senior FullStack Developer
 - **Company:** VISEO (contractor/BPO), Hong Kong client (remote)
 - **NDA:** Do NOT name custody providers, banking partners, or blockchain infrastructure vendors
 
@@ -53,10 +53,10 @@
 - Primary liaison with blockchain team for contract specifications; co-designed gateway abstraction layer with CTO
 - Type-safe smart contract integration using ABIType and Viem across 27+ contract interfaces
 - Authentication: Microsoft Entra ID (Azure AD) SSO with JWT refresh and middleware-based route protection
-- State management: Redux Toolkit (7 slices) + TanStack React Query
-- Testing: Jest unit/contract specs, Supertest E2E suites, factory-generated webhook payloads
+- State management: TanStack React Query
+- Testing: Vitest unit/contract specs, React Testing Library, factory-generated webhook payloads
 
-**Stack:** Next.js 16 · React 19 · TypeScript 5.9 · NestJS 11 · Viem · ABIType · Redux Toolkit · TanStack Query · AWS KMS · Zod · Jest · Supertest · Docker · Kubernetes · Swagger/OpenAPI
+**Stack:** Next.js 16 · React 19 · TypeScript 5.9 · NestJS 11 · Solidity · Viem · ABIType · TanStack Query · AWS KMS · Zod · Vitest · React Testing Library · Docker · Kubernetes · Swagger/OpenAPI
 
 ---
 
@@ -103,7 +103,7 @@
 - Directed major design overhauls and feature updates, managed task boards and cross-team collaboration
 - Authored comprehensive unit and integration tests with Jest and React Testing Library
 
-**Stack:** React · Next.js · TypeScript · OpenAI · LangChain · Supabase · Jest · React Testing Library
+**Stack:** React · Next.js · TypeScript · OpenAI · LangChain · Supabase · Zustand · TanStack Query · Jest · React Testing Library
 
 ---
 
@@ -117,7 +117,7 @@
 - Maintained and refactored codebases to optimize performance and reduce technical debt
 - Specialized in form-intensive applications and admin dashboards with react-hook-form and Next.js SSR
 
-**Stack:** React · Next.js · Node.js · Express · TypeScript
+**Stack:** React · Next.js · Node.js · Express · TypeScript · Jest
 
 ---
 
@@ -132,7 +132,7 @@
 - Integrated Tron, WAX, and Syscoin blockchain APIs for cryptocurrency transactions
 - Built Telegram bot to manage Syscoin social interactions and automate airdrop distributions
 
-**Stack:** AngularJS · Web3.js · Solidity · Hardhat · OpenZeppelin · Node.js · Jest · Telegram Bot API
+**Stack:** AngularJS · Web3.js · Solidity · Hardhat · OpenZeppelin · Node.js · Mocha · Jest · Telegram Bot API
 
 ---
 
@@ -149,7 +149,7 @@
   - RAG pipeline (pgvector) feeding visitor-facing chatbot with transparency rules (refuses to hallucinate)
   - QStash async job pipeline for document parsing, embedding, blog generation, knowledge sync
   - TDD-first: Vitest + Playwright, OpenSpec validation gates
-- **Stack:** Next.js 16 · React 19 · TypeScript 5.9 · Mastra · Vercel AI SDK v6 · tRPC · TanStack Query · Drizzle ORM · Supabase · pgvector · QStash · Zod v4 · json-render · next-intl · Vitest · Playwright · Biome
+- **Stack:** Next.js 16 · React 19 · TypeScript 5.9 · Mastra · Vercel AI SDK v6 · AI Elements · tRPC · TanStack Query · Zustand · Drizzle ORM · Supabase · pgvector · Zod v4 · QStash · Resend · json-render · next-intl · Vitest · Playwright · Biome
 
 ### KudosCourts — Sports Court Discovery & Booking
 - **URL:** [kudoscourts.ph](https://kudoscourts.ph)
@@ -158,8 +158,8 @@
 - **Key points:**
   - Booking engine with full lifecycle (reserve → confirm → check-in → complete/no-show/cancel) across walk-in, advance, membership, and recurring models
   - Event-driven notification system via QStash async processing
-  - Shipped solo: architecture, code, design system (teal/orange palette, Outfit + Source Sans 3), marketing, #buildinpublic
-- **Stack:** Next.js · React · TypeScript · Supabase · TanStack Query · tRPC · QStash · Resend · Tailwind · shadcn/ui
+  - Built solo: architecture, code, design system (teal/orange palette, Outfit + Source Sans 3), marketing, #buildinpublic
+- **Stack:** Next.js 16 · React · TypeScript · AI SDK · Supabase · Drizzle ORM · TanStack Query · Zustand · XState · tRPC · Zod · QStash · Resend · Vitest · Playwright · Tailwind · shadcn/ui
 
 ---
 
@@ -182,7 +182,7 @@
 - OG image setup (`/og` route)
 - Calendly integration
 - Contact form (email: raphaelmansueto@gmail.com)
-- Socials: GitHub, LinkedIn, Email
+- Socials: GitHub, LinkedIn, X/Twitter, Email
 
 **Kill:**
 - Blog section (Payload CMS) — placeholder content, not maintained
@@ -196,7 +196,7 @@
 **Carry over subtly:**
 - Shared portfolio screenshots (Vectle, Dorshy, etc.) — can reference as "earlier client work"
 - NDA disclaimer concept ("We've worked on many more solutions under NDAs")
-- Calendly link routes through rethndr — keep using it
+- Calendly link now routes through raphaelmansueto/30min
 
 ---
 
@@ -211,7 +211,52 @@
 - **Layout:** Single page, single column scroll, max-width ~720px
 - **Aesthetic:** Dark, text-focused, engineering precision. No gradients, no illustrations, no stock photos.
 - **Motion:** Subtle scroll-triggered fade-up. Hover states on cards. No parallax, no page transitions.
-- **Copy tone:** Direct. Action verbs. No superlatives. Let the work speak.
+- **Copy tone:** Direct. Action verbs. No superlatives. No em-dashes. No "shipping". Let the work speak.
+
+---
+
+## Copy Guidelines (Learned from iteration)
+
+These rules were established through multiple rounds of review. Follow them for all future copy changes.
+
+### Voice and tone
+- **No em-dashes or en-dashes.** Use commas, periods, colons, or restructure the sentence. Em-dashes are the #1 AI-detection signal.
+- **No "shipping/ship/shipped".** Use "deliver", "build", "launch" instead. "Shipping" reads as unprofessional startup slang.
+- **No vague filler.** "Global teams", "end-to-end", "cutting-edge" are empty calories. Say what you actually mean or cut it.
+- **No exaggeration.** "Every line written under strict compliance review" is the kind of claim that makes hiring managers roll their eyes. If you've been at one compliance job for less than a year, don't write copy that implies a decade of it.
+- **No resume-speak.** "I architect production AI systems" is stiff. Write like a person, not a LinkedIn headline.
+
+### Structure
+- **Hero and About must do different work.** The hero is the hook (identity + differentiator). The About section is the expansion (how I work + range + credentials). Never repeat the same claim in both.
+- **Lead with the differentiator.** The "I build WITH AI" angle is what separates Raphael from other fullstack engineers. It goes first, not buried in paragraph 3.
+- **Experience descriptions need outcomes, not just build lists.** Every role should answer "what happened because I built this?" not just "what did I build?" Hustlewing's "300% growth" is the model. VISEO's security details are proof enough without claiming outcomes.
+- **Project descriptions lead with the user, not the tech.** "Filipino agents get a professional web page" not "Conversational AI that builds web pages."
+
+### What NOT to do
+- **Don't count features as a flex.** "10 feature modules, 30+ routes, 27+ contract interfaces" is cringe on a portfolio. It reads as padding. Describe what the system does, not how many files it has.
+- **Don't namedrop tools in the wrong section.** AWS KMS belongs in experience tags, not in the About section. About should focus on concepts (security, process, coordination), not specific tools.
+- **Don't take instructions literally.** "Separation of devops and developers" means cross-team coordination in a large org, not a literal statement about org chart boundaries.
+- **Don't describe AI tools incorrectly.** Claude Code and Codex are used interchangeably depending on the task. Don't assign specific roles to each unless Raphael specifies.
+- **Don't duplicate VISEO details.** VISEO compliance details live in the Experience section only. The About section references the concept of compliance-grade work without repeating specifics.
+
+### Narrative arc (decided)
+The page tells one story in this order:
+1. **Hero:** Identity + AI-first differentiator + "production, not demos"
+2. **About P1:** How I work (AI-assisted development, Claude Code, Codex, custom skills, TDD-first)
+3. **About P2:** Range (same discipline scales to compliance-grade environments)
+4. **About P3:** Credentials + freelance availability
+5. **Experience:** Prove it (career arc from first role to compliance fintech)
+6. **Projects:** Initiative (side projects, user-first framing)
+7. **Awards:** Third-party credibility
+8. **Services:** CTA
+
+### AI tooling positioning
+- Raphael uses Claude Code and Codex **interchangeably** depending on the task at hand
+- They are for **streamlining workflow**, not "autonomous execution"
+- He writes **custom AI skills** that enforce TDD-first architecture
+- He uses **spec-driven pipelines** that validate before deployment
+- The key claim: delivers at a pace and cost that doesn't make sense for a solo engineer
+- In compliance environments (VISEO), AI tooling is NOT used in the codebase. This shows range.
 
 ---
 
@@ -219,7 +264,7 @@
 
 - **TDD-first:** Vitest unit + Playwright E2E, mocked service interfaces, eval scripts for AI quality gating
 - **Spec-driven:** OpenSpec pipeline with validation gates, agentic coding loops
-- **AI-native tooling:** Claude Code, Desktop Commander MCP, Ralph Orchestrator
+- **AI-native tooling:** Claude Code, Codex, Desktop Commander MCP, Ralph Orchestrator
 - **Clean architecture:** Router → UseCase → Service → Repository with full DI, Zod-typed contracts at every boundary
 
 ---
@@ -227,7 +272,7 @@
 ## Positioning
 
 - **Title:** Full Stack AI Engineer
-- **One-liner:** I build AI-powered products end-to-end — from multi-agent pipelines to production frontends.
+- **Hero subtitle:** I build with AI the way most engineers use linters: always on, deeply integrated. Multi-agent pipelines, LLM orchestration, and RAG systems that run in production, not demos. Based in Cebu, Philippines.
 - **Target audience:** Hiring managers, startup founders, freelance clients on Upwork/LinkedIn
 - **Freelance availability:** Part-time, project-based, flexible hours
 - **Rate target:** $30–50/hr starting (with room to raise quickly based on Ample + VISEO portfolio)
@@ -239,7 +284,7 @@
 **Listed on CV:** JavaScript, TypeScript, Go, ReactJS, NextJS, AngularJS, NodeJS, HTML5 & CSS3, Web3.js, Solidity, Blockchain, Hardhat, Jest, Mocha, Chai, React Testing Library, PostgreSQL, MongoDB, Git, Docker, AI SDKs
 
 **Missing from CV (add for overhaul):**
-- Mastra, Vercel AI SDK, Gemini, xAI/Grok, OpenAI (multi-provider routing)
+- Mastra, Vercel AI SDK, AI Elements, Gemini, xAI/Grok, OpenAI (multi-provider routing)
 - NestJS, tRPC, Drizzle ORM, Zod, TanStack Query
 - Supabase, Upstash Redis, pgvector, QStash
 - Viem, ABIType, AWS KMS, EIP-712, mTLS
