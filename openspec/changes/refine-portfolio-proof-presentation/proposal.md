@@ -4,7 +4,7 @@ The latest portfolio pass improved proof integrity but still presents several hi
 
 ## What Changes
 
-- Replace the employer-title hero eyebrow with the agreed hiring-language position: `Raphael Mansueto · Senior Full-Stack Engineer · AI Integrations`.
+- Replace the employer-title hero eyebrow with the agreed hiring-language position: `Senior Full-Stack Engineer · AI Integrations`.
 - Rewrite the anonymized Vectle employer-project summary around customizable campaign drafts, feedback-driven refinement, and a human decision gate; keep implementation technologies subordinate.
 - Remove “Solo product owner” language and let specific ownership evidence communicate scope without a potentially negative staffing frame.
 - Reorder Selected Work to KudosCourts, Ample News, then CravingsPH.

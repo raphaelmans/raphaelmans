@@ -1,23 +1,25 @@
 import type { PrimaryExperienceRecord } from "@/data/portfolio-data";
+import { ExperienceSkills } from "./experience-skills";
 
 export function ExperienceItem({
+  id,
   period,
   role,
   company,
   status,
   summary,
   proofPoints,
-  tags,
+  skills,
 }: PrimaryExperienceRecord) {
   return (
-    <article className="py-8 first:pt-0 last:pb-0">
+    <article data-experience={id} className="py-8 first:pt-0 last:pb-0">
       <div className="flex items-start justify-between gap-4 max-sm:flex-col max-sm:gap-2">
         <div>
           <h3 className="text-lg font-medium leading-[1.3] tracking-[-0.015em] text-foreground">
             {role} <span className="font-normal text-muted-foreground">· {company}</span>
           </h3>
           {status === "Current" && (
-            <span className="mt-2 inline-flex rounded-full border border-primary/25 bg-accent px-2 py-0.5 font-mono text-[10px] uppercase tracking-[0.06em] text-accent-foreground">
+            <span className="mt-2 inline-flex items-center rounded-full border border-primary/25 bg-accent px-2 py-1 font-mono text-[10px] leading-none uppercase tracking-[0.06em] text-accent-foreground">
               Current
             </span>
           )}
@@ -43,9 +45,7 @@ export function ExperienceItem({
         ))}
       </ul>
 
-      <p className="mt-5 font-mono text-xs leading-relaxed text-muted-foreground">
-        {tags.slice(0, 6).join(" · ")}
-      </p>
+      <ExperienceSkills skills={skills} />
     </article>
   );
 }

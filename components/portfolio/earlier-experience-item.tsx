@@ -1,14 +1,16 @@
 import type { EarlierExperienceRecord } from "@/data/portfolio-data";
+import { ExperienceSkills } from "./experience-skills";
 
 export function EarlierExperienceItem({
+  id,
   period,
   role,
   company,
   contribution,
-  technologySummary,
+  skills,
 }: EarlierExperienceRecord) {
   return (
-    <article className="py-6">
+    <article data-experience={id} className="py-6">
       <div className="flex items-baseline justify-between gap-4 max-sm:flex-col max-sm:gap-1">
         <h4 className="font-medium text-foreground">
           {role} <span className="font-normal text-muted-foreground">· {company}</span>
@@ -18,11 +20,7 @@ export function EarlierExperienceItem({
       <p className="mt-2 max-w-[660px] text-sm leading-[1.65] text-muted-foreground">
         {contribution}
       </p>
-      {technologySummary && (
-        <p className="mt-2 font-mono text-xs text-muted-foreground">
-          {technologySummary}
-        </p>
-      )}
+      <ExperienceSkills skills={skills} />
     </article>
   );
 }

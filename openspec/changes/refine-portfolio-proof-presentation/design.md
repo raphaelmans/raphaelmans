@@ -32,7 +32,7 @@ This change is constrained by existing publication governance: Vectle remains an
 
 ### 1. Separate market positioning from employment facts
 
-The homepage identity line will use the exact agreed position `Raphael Mansueto · Senior Full-Stack Engineer · AI Integrations`. The Experience section will continue to state `Senior Full Stack Developer · VISEO`, and structured professional data will retain the official current title. Metadata may use the market position as a portfolio descriptor only when it does not imply that it is the VISEO job title.
+The homepage identity line will use the exact agreed position `Senior Full-Stack Engineer · AI Integrations`. The Experience section will continue to state `Senior Full Stack Developer · VISEO`, and structured professional data will retain the official current title. Metadata may use the market position as a portfolio descriptor only when it does not imply that it is the VISEO job title.
 
 This is preferred over `Product Engineer`, which is less consistently recognized by hiring teams, and over keeping VISEO in the hero, which makes the opening feel like a résumé heading rather than a clear specialization.
 

@@ -4,7 +4,7 @@ import { fileURLToPath } from "node:url";
 import sitemap from "../app/sitemap";
 import { buildLlmsText } from "../app/llms.txt/route";
 import { caseStudies } from "../data/case-studies";
-import { featuredWork } from "../data/portfolio-data";
+import { experiences, featuredWork } from "../data/portfolio-data";
 import {
   PUBLIC_CASE_STUDY_SLUGS,
   PUBLIC_CASE_STUDY_SLUG_SET,
@@ -34,6 +34,19 @@ const flagshipProjects = featuredWork.filter(
 const supportingProjects = featuredWork.filter(
   (project) => project.homepagePresentation === "supporting"
 );
+
+for (const experience of experiences) {
+  if (experience.skills.length < 5 || experience.skills.some((skill) => !skill.trim())) {
+    fail(`Experience "${experience.id}" must expose at least five named skills`);
+  }
+  const skills = new Set<string>();
+  for (const skill of experience.skills) {
+    if (skills.has(skill)) {
+      fail(`Experience "${experience.id}" repeats skill "${skill}"`);
+    }
+    skills.add(skill);
+  }
+}
 
 if (!sameOrder(caseStudySlugs, PUBLIC_CASE_STUDY_SLUGS)) {
   fail(`Published case-study order is ${caseStudySlugs.join(", ")}; expected ${PUBLIC_CASE_STUDY_SLUGS.join(", ")}`);

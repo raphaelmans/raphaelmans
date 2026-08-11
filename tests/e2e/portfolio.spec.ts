@@ -94,7 +94,16 @@ test("homepage presents the compact qualified-interview argument", async ({ page
 
   await expect(page.getByRole("link", { name: "Raphael Mansueto" })).toBeVisible();
   await expect(
-    page.getByText("Raphael Mansueto · Senior Full-Stack Engineer · AI Integrations", { exact: true })
+    page.getByText("Senior Full-Stack Engineer · AI Integrations", { exact: true })
+  ).toBeVisible();
+  await expect(
+    page.getByRole("heading", { name: "From product requirements to production systems." })
+  ).toBeVisible();
+  await expect(
+    page.getByText(
+      "I deliver across frontend, backend, AI integrations, data, and infrastructure—with the testing and observability needed to operate reliably.",
+      { exact: true }
+    )
   ).toBeVisible();
   await expect(
     page.getByText(
@@ -108,6 +117,20 @@ test("homepage presents the compact qualified-interview argument", async ({ page
   );
   await expect(page.getByRole("heading", { name: "Senior Full Stack Developer · VISEO" })).toBeVisible();
   await expect(page.getByRole("heading", { name: "Full-Stack AI Integration Engineer · HustleWing" })).toBeVisible();
+  const expectedExperienceSkills = {
+    viseo: ["Next.js 16 / TypeScript", "Docker / Kubernetes", "EVM / Solana", "Viem / Wagmi", "Vitest / React Testing Library"],
+    hustlewing: ["Go / Gin", "PostgreSQL / pgvector", "OpenAI / Vercel AI SDK", "LangGraph / Mastra", "Google Cloud Pub/Sub", "Docker / Kubernetes", "Langfuse / OpenTelemetry"],
+    outliant: ["REST APIs", "React Hook Form", "Server-side rendering"],
+    vibravid: ["Hardhat / OpenZeppelin", "Mocha / Chai / Jest", "Tron / WAX / Syscoin", "Telegram Bot API"],
+  };
+  for (const [experienceId, skills] of Object.entries(expectedExperienceSkills)) {
+    const experience = page.locator(`[data-experience='${experienceId}']`);
+    await expect(experience).toHaveCount(1);
+    await expect(experience.locator("[data-experience-skills]")).toHaveCount(1);
+    for (const skill of skills) {
+      await expect(experience.locator("[data-experience-skills]")).toContainText(skill);
+    }
+  }
   const primaryExperiences = page.locator("[data-experience-list] > article");
   await expect(primaryExperiences).toHaveCount(2);
   for (const experience of await primaryExperiences.all()) {

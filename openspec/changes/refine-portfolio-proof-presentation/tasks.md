@@ -1,7 +1,7 @@
 ## 1. Hiring Language and Public Ordering
 
 - [x] 1.1 Read the relevant Next.js 16 metadata, structured-data, route-handler, and rendering guidance from `node_modules/next/dist/docs/` before changing framework-facing identity or machine-readable output.
-- [x] 1.2 Replace the homepage identity line with `Raphael Mansueto · Senior Full-Stack Engineer · AI Integrations` while keeping `Senior Full Stack Developer · VISEO` in Experience as the factual current role.
+- [x] 1.2 Replace the homepage identity line with `Senior Full-Stack Engineer · AI Integrations` while keeping `Senior Full Stack Developer · VISEO` in Experience as the factual current role.
 - [x] 1.3 Reconcile page metadata, structured data, Open Graph content, README/resume-facing summaries, and `llms.txt` so market positioning and the official current title have explicit, non-conflicting uses.
 - [x] 1.4 Rename the anonymized employer project to `Customizable campaign workflow` and replace its implementation-led summary with the approved business-data, feedback-refinement, and human-decision-gate copy; keep the Vectle name withheld and technology metadata subordinate.
 - [x] 1.5 Remove `Solo product owner` from KudosCourts role metadata without adding a replacement team-size claim; verify the case study still demonstrates ownership through specific responsibilities and decisions.

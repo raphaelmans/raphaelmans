@@ -21,14 +21,13 @@ export interface PrimaryExperienceRecord extends ExperienceRecordBase {
   presentation: "primary";
   summary: string;
   proofPoints: string[];
-  tags: string[];
-  glowTags: string[];
+  skills: string[];
 }
 
 export interface EarlierExperienceRecord extends ExperienceRecordBase {
   presentation: "earlier";
   contribution: string;
-  technologySummary?: string;
+  skills: string[];
 }
 
 export type ExperienceRecord = PrimaryExperienceRecord | EarlierExperienceRecord;
@@ -81,17 +80,16 @@ export const experiences: ExperienceRecord[] = [
       "Designed a network adapter strategy so one Next.js portal can expose consistent workflows across EVM and Solana without duplicating the interface.",
       "Developing a dedicated Node.js gateway for execution between EVM Layer 2 and Solana Layer 1 while preserving signing and audit-sensitive boundaries.",
     ],
-    tags: [
-      "Next.js 16",
-      "TypeScript",
+    skills: [
+      "Next.js 16 / TypeScript",
       "NestJS",
-      "Viem",
-      "Wagmi",
-      "Solana",
-      "AWS",
       "PostgreSQL",
+      "AWS",
+      "Docker / Kubernetes",
+      "EVM / Solana",
+      "Viem / Wagmi",
+      "Vitest / React Testing Library",
     ],
-    glowTags: ["Next.js 16", "Viem", "Solana"],
   },
   {
     id: "hustlewing",
@@ -109,17 +107,16 @@ export const experiences: ExperienceRecord[] = [
       "Connected grounded research, voice interviews, video processing, human approval, and social publishing in a production AI media workflow with observability across asynchronous stages.",
       "Turned business data into customizable campaign drafts with a feedback loop and human decision gate before final use.",
     ],
-    tags: [
-      "Next.js",
-      "TypeScript",
-      "Go",
-      "Gin",
-      "PostgreSQL",
-      "OpenAI",
-      "Pub/Sub",
-      "pgvector",
+    skills: [
+      "Next.js / TypeScript",
+      "Go / Gin",
+      "PostgreSQL / pgvector",
+      "OpenAI / Vercel AI SDK",
+      "LangGraph / Mastra",
+      "Google Cloud Pub/Sub",
+      "Docker / Kubernetes",
+      "Langfuse / OpenTelemetry",
     ],
-    glowTags: ["Go", "OpenAI", "Pub/Sub"],
   },
   {
     id: "outliant",
@@ -130,7 +127,13 @@ export const experiences: ExperienceRecord[] = [
     status: "Completed",
     contribution:
       "Built Next.js customer experiences, Express APIs, server-rendered forms, and administrative tools for a social platform, then helped clear delayed sprint work.",
-    technologySummary: "Next.js · Express · TypeScript",
+    skills: [
+      "Next.js / TypeScript",
+      "Node.js / Express",
+      "REST APIs",
+      "Server-side rendering",
+      "React Hook Form",
+    ],
   },
   {
     id: "vibravid",
@@ -141,7 +144,14 @@ export const experiences: ExperienceRecord[] = [
     status: "Completed",
     contribution:
       "Built Web3 interfaces and developed, tested, and deployed Solidity contracts on Ethereum, with Tron, WAX, and Syscoin integrations.",
-    technologySummary: "AngularJS · Node.js · Solidity",
+    skills: [
+      "Solidity / Ethereum",
+      "Hardhat / OpenZeppelin",
+      "Mocha / Chai / Jest",
+      "Node.js",
+      "Tron / WAX / Syscoin",
+      "Telegram Bot API",
+    ],
   },
 ];
 

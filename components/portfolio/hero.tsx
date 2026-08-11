@@ -4,15 +4,16 @@ export function Hero() {
   return (
     <header className="pt-[120px] pb-16">
       <p className="mb-4 text-sm text-muted-foreground">
-        Raphael Mansueto · Senior Full-Stack Engineer · AI Integrations
+        Senior Full-Stack Engineer · AI Integrations
       </p>
       <h1 className="m-0 max-w-[680px] text-pretty text-[46px] font-semibold leading-[1.06] tracking-[-0.04em] max-sm:text-[36px]">
-        Reliable systems for work that crosses <span className="text-primary">hard boundaries.</span>
+        From product requirements to <span className="text-primary">production systems.</span>
       </h1>
 
       <p className="mt-5 max-w-[650px] text-pretty text-xl leading-[1.5] text-secondary-foreground max-sm:text-lg">
-        I turn integration-heavy workflows into reliable products across AI,
-        data, web, and mobile.
+        I deliver across frontend, backend, AI integrations, data, and
+        infrastructure—with the testing and observability needed to operate
+        reliably.
       </p>
 
       <p className="mt-4 max-w-[620px] text-[15px] leading-[1.7] text-muted-foreground">

@@ -5,7 +5,7 @@ The homepage SHALL present Raphael as `Senior Full-Stack Engineer · AI Integrat
 
 #### Scenario: Hiring visitor scans the opening viewport
 - **WHEN** a visitor opens the homepage
-- **THEN** the identity line reads `Raphael Mansueto · Senior Full-Stack Engineer · AI Integrations`
+- **THEN** the identity line reads `Senior Full-Stack Engineer · AI Integrations`
 - **AND** the opening viewport does not append `Senior Full Stack Developer at VISEO` to that identity line
 - **AND** the VISEO experience still identifies the official role as `Senior Full Stack Developer`
 
