@@ -1,6 +1,6 @@
 import { ImageResponse } from "next/og";
 
-export const alt = "Raphael Mansueto | Full Stack AI Engineer";
+export const alt = "Raphael Mansueto | Senior Full-Stack Engineer | AI Integrations";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -28,7 +28,7 @@ export default function Image() {
             marginBottom: 20,
           }}
         >
-          Full Stack AI Engineer
+          Senior Full-Stack Engineer · AI Integrations
         </div>
         <div
           style={{
@@ -50,8 +50,8 @@ export default function Image() {
             maxWidth: 700,
           }}
         >
-          Multi-agent pipelines, LLM orchestration, and RAG systems that run in
-          production, not demos.
+          Production AI workflows, integration-heavy platforms, and full-stack
+          products across web and mobile.
         </div>
       </div>
     ),

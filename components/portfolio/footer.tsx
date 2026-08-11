@@ -1,20 +1,26 @@
 export function Footer() {
   return (
-    <footer className="pb-10 pt-4 border-t border-white/[0.06] flex justify-between items-center flex-wrap gap-2">
-      <span className="text-xs text-zinc-500">
+    <footer className="flex flex-wrap items-center justify-between gap-x-6 gap-y-3 border-t border-border pb-10 pt-6">
+      <span className="text-xs text-muted-foreground">
         &copy; 2026 Raphael Mansueto
       </span>
-      <div className="flex gap-4 items-center">
+      <nav aria-label="Footer utilities" className="flex flex-wrap items-center gap-x-4 gap-y-2 text-xs text-muted-foreground">
         <a
-          href="https://rethndr.com"
+          className="min-h-11 min-w-11 content-center rounded-sm hover:text-foreground focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
+          href="https://github.com/raphaelmans"
           target="_blank"
           rel="noopener noreferrer"
-          className="text-[11px] font-mono text-zinc-500 no-underline hover:text-zinc-400 transition-colors duration-150"
         >
-          rethndr.com
+          GitHub
         </a>
-        <span className="text-xs font-mono text-zinc-500">Cebu, PH</span>
-      </div>
+        <a
+          className="min-h-11 content-center rounded-sm hover:text-foreground focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
+          href="#top"
+        >
+          Back to top
+        </a>
+        <span className="font-mono">Cebu, PH</span>
+      </nav>
     </footer>
   );
 }

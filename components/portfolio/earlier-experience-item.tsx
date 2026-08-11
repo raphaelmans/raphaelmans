@@ -1,0 +1,28 @@
+import type { EarlierExperienceRecord } from "@/data/portfolio-data";
+
+export function EarlierExperienceItem({
+  period,
+  role,
+  company,
+  contribution,
+  technologySummary,
+}: EarlierExperienceRecord) {
+  return (
+    <article className="py-6">
+      <div className="flex items-baseline justify-between gap-4 max-sm:flex-col max-sm:gap-1">
+        <h4 className="font-medium text-foreground">
+          {role} <span className="font-normal text-muted-foreground">· {company}</span>
+        </h4>
+        <time className="shrink-0 font-mono text-xs text-muted-foreground">{period}</time>
+      </div>
+      <p className="mt-2 max-w-[660px] text-sm leading-[1.65] text-muted-foreground">
+        {contribution}
+      </p>
+      {technologySummary && (
+        <p className="mt-2 font-mono text-xs text-muted-foreground">
+          {technologySummary}
+        </p>
+      )}
+    </article>
+  );
+}

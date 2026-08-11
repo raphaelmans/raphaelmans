@@ -7,5 +7,6 @@ export default function robots(): MetadataRoute.Robots {
       allow: "/",
     },
     sitemap: "https://raphaelmansueto.com/sitemap.xml",
+    host: "https://raphaelmansueto.com",
   };
 }

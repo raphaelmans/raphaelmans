@@ -1,7 +1,8 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Geist_Mono, Inter } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
+import { ThemeProvider } from "@/components/theme-provider";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
 
@@ -11,14 +12,24 @@ const geistMono = Geist_Mono({
 });
 
 const siteUrl = "https://raphaelmansueto.com";
-const title = "Raphael Mansueto | Full Stack AI Engineer";
+const title = "Senior Full-Stack Engineer · AI Integrations | Raphael Mansueto";
 const description =
-  "Full Stack AI Engineer. Multi-agent pipelines, LLM orchestration, and RAG systems that run in production, not demos. Based in Cebu, Philippines.";
+  "Raphael Mansueto is a Senior Full-Stack Engineer specializing in AI integrations and reliable web and mobile systems. Currently a Senior Full Stack Developer at VISEO.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
-  title,
+  title: {
+    default: title,
+    template: "%s | Raphael Mansueto",
+  },
   description,
+  authors: [{ name: "Raphael Mansueto", url: siteUrl }],
+  creator: "Raphael Mansueto",
+  publisher: "Raphael Mansueto",
+  robots: {
+    index: true,
+    follow: true,
+  },
   openGraph: {
     title,
     description,
@@ -33,9 +44,14 @@ export const metadata: Metadata = {
     description,
     creator: "@raphaeljamesm",
   },
-  other: {
-    "theme-color": "#09090b",
-  },
+};
+
+export const viewport: Viewport = {
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#f7f7f5" },
+    { media: "(prefers-color-scheme: dark)", color: "#09090b" },
+  ],
+  colorScheme: "light dark",
 };
 
 export default function RootLayout({
@@ -46,10 +62,12 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={cn("dark h-full", "antialiased", geistMono.variable, "font-sans", inter.variable)}
-      style={{ colorScheme: "dark" }}
+      suppressHydrationWarning
+      className={cn("h-full", "antialiased", geistMono.variable, "font-sans", inter.variable)}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col">
+        <ThemeProvider>{children}</ThemeProvider>
+      </body>
     </html>
   );
 }

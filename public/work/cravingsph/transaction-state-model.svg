@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="900" viewBox="0 0 1000 900" role="img" aria-labelledby="title desc">
+  <title id="title">CravingsPH transaction and state model</title>
+  <desc id="desc">A public system model showing table and kiosk commands entering a locked transaction, then updating lifecycle, payment, and fulfillment state regions before realtime reconciliation.</desc>
+  <rect width="1000" height="900" rx="28" fill="#f6f6f3"/>
+  <text x="64" y="74" fill="#18181b" font-family="Arial, sans-serif" font-size="32" font-weight="700">One command, three coordinated state regions</text>
+  <text x="64" y="110" fill="#52525b" font-family="Arial, sans-serif" font-size="20">Simplified public model · implemented architecture, not a volume claim</text>
+
+  <g font-family="Arial, sans-serif">
+    <rect x="64" y="154" width="260" height="106" rx="16" fill="#ffffff" stroke="#d4d4d8" stroke-width="2"/>
+    <text x="92" y="192" fill="#075985" font-size="18" font-weight="700">COMMAND SOURCES</text>
+    <text x="92" y="226" fill="#18181b" font-size="23" font-weight="700">Staff · guest · kiosk</text>
+    <text x="92" y="249" fill="#52525b" font-size="16">Scoped device trust</text>
+
+    <path d="M324 207h66" stroke="#0369a1" stroke-width="3"/>
+    <path d="m381 198 10 9-10 9" fill="none" stroke="#0369a1" stroke-width="3"/>
+
+    <rect x="392" y="144" width="544" height="126" rx="16" fill="#ffffff" stroke="#0369a1" stroke-width="3"/>
+    <text x="424" y="184" fill="#075985" font-size="18" font-weight="700">TRANSACTION BOUNDARY</text>
+    <text x="424" y="220" fill="#18181b" font-size="23" font-weight="700">Command ID → dedupe → deterministic row locks</text>
+    <text x="424" y="249" fill="#52525b" font-size="17">Conflicts resolve as retries or benign “already applied” results</text>
+
+    <path d="M664 270v54" stroke="#0369a1" stroke-width="3"/>
+    <path d="m655 315 9 10 9-10" fill="none" stroke="#0369a1" stroke-width="3"/>
+
+    <rect x="64" y="325" width="872" height="354" rx="20" fill="#ffffff" stroke="#a1a1aa" stroke-width="2" stroke-dasharray="10 8"/>
+    <text x="92" y="365" fill="#52525b" font-size="18" font-weight="700">ATOMIC SESSION / ORDER UPDATE</text>
+
+    <rect x="92" y="398" width="816" height="72" rx="14" fill="#e0f2fe" stroke="#0369a1" stroke-width="2"/>
+    <text x="120" y="429" fill="#075985" font-size="17" font-weight="700">REGION 1 · LIFECYCLE</text>
+    <text x="360" y="438" fill="#18181b" font-size="22" font-weight="700">open → submitted → closed / cancelled</text>
+
+    <rect x="92" y="486" width="816" height="72" rx="14" fill="#ecfeff" stroke="#0e7490" stroke-width="2"/>
+    <text x="120" y="517" fill="#155e75" font-size="17" font-weight="700">REGION 2 · PAYMENT</text>
+    <text x="360" y="526" fill="#18181b" font-size="22" font-weight="700">unpaid → partial → settled / reversed</text>
+
+    <rect x="92" y="574" width="816" height="72" rx="14" fill="#f4f4f5" stroke="#71717a" stroke-width="2"/>
+    <text x="120" y="605" fill="#52525b" font-size="17" font-weight="700">REGION 3 · FULFILLMENT</text>
+    <text x="360" y="614" fill="#18181b" font-size="22" font-weight="700">queued → preparing → ready → served</text>
+
+    <text x="92" y="665" fill="#52525b" font-size="16">Cross-region guards reject invalid combinations before commit.</text>
+
+    <path d="M500 679v48" stroke="#0369a1" stroke-width="3"/>
+    <path d="m491 718 9 10 9-10" fill="none" stroke="#0369a1" stroke-width="3"/>
+
+    <rect x="64" y="728" width="872" height="104" rx="16" fill="#ffffff" stroke="#d4d4d8" stroke-width="2"/>
+    <text x="92" y="768" fill="#075985" font-size="18" font-weight="700">AFTER COMMIT</text>
+    <text x="92" y="800" fill="#18181b" font-size="22" font-weight="700">Realtime floor event → query-cache reconciliation → consistent staff view</text>
+  </g>
+  <text x="64" y="868" fill="#71717a" font-family="Arial, sans-serif" font-size="17">Region names, sequence, and boundary styles preserve meaning without relying on color.</text>
+</svg>

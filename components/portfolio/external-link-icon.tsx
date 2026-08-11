@@ -6,11 +6,11 @@ export function ExternalLinkIcon() {
       viewBox="0 0 12 12"
       fill="none"
       aria-hidden="true"
-      className="opacity-25 group-hover:opacity-70 transition-[opacity,transform] duration-150 group-hover:translate-x-px group-hover:-translate-y-px shrink-0"
+      className="shrink-0 text-primary opacity-40 transition-[opacity,transform] duration-150 group-hover:-translate-y-px group-hover:translate-x-px group-hover:opacity-100"
     >
       <path
         d="M3.5 2h6.5v6.5M9.5 2.5L2 10"
-        stroke="#38bdf8"
+        stroke="currentColor"
         strokeWidth="1.2"
         strokeLinecap="round"
         strokeLinejoin="round"

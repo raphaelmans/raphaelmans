@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="360" height="390" viewBox="0 0 360 390" role="img" aria-labelledby="title desc">
+  <title id="title">Compact KudosCourts system path</title>
+  <desc id="desc">Fragmented venue evidence passes through human review before deterministic persistence serves the typed web, mobile, and operations product.</desc>
+  <rect width="360" height="390" rx="20" fill="#f6f6f3"/>
+  <text x="24" y="42" fill="#18181b" font-family="Arial, sans-serif" font-size="22" font-weight="700">Evidence to operation</text>
+  <g font-family="Arial, sans-serif">
+    <rect x="24" y="72" width="312" height="72" rx="14" fill="#fff" stroke="#d4d4d8" stroke-width="2"/>
+    <text x="44" y="101" fill="#075985" font-size="14" font-weight="700">01 · FRAGMENTED EVIDENCE</text>
+    <text x="44" y="127" fill="#18181b" font-size="16" font-weight="700">Web + maps + owner records</text>
+    <path d="M180 144v18" stroke="#0369a1" stroke-width="3"/>
+    <rect x="24" y="162" width="312" height="84" rx="14" fill="#e0f2fe" stroke="#0369a1" stroke-width="3"/>
+    <text x="44" y="191" fill="#075985" font-size="14" font-weight="700">02 · REVIEW GATE</text>
+    <text x="44" y="217" fill="#18181b" font-size="16" font-weight="700">Human approval before writes</text>
+    <text x="44" y="237" fill="#52525b" font-size="14">Provenance + duplicate checks</text>
+    <path d="M180 246v18" stroke="#0369a1" stroke-width="3"/>
+    <rect x="24" y="264" width="312" height="98" rx="14" fill="#fff" stroke="#d4d4d8" stroke-width="2"/>
+    <text x="44" y="293" fill="#075985" font-size="14" font-weight="700">03 · TYPED PRODUCT</text>
+    <text x="44" y="319" fill="#18181b" font-size="16" font-weight="700">Deterministic persistence</text>
+    <text x="44" y="343" fill="#52525b" font-size="14">Next.js + Expo + owner operations</text>
+  </g>
+</svg>

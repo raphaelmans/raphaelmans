@@ -42,7 +42,7 @@ Portfolio: raphaelmansueto.com
 [FORHIRE][REMOTE]
 Full Stack Engineer - Cebu, Philippines $15/hr
 
-React, Node, TypeScript. Zustand on every project (Ample, Hustlewing, KudosCourts, Ugnay). I build effectively and am accelerated by AI workflows.
+React, Node, TypeScript. Zustand on every project. I build effectively and am accelerated by AI workflows.
 
 Multi-agent AI pipelines, compliance-grade fintech, full stack product development. Next.js 16, tRPC, Supabase, Drizzle, Vitest.
 

@@ -12,8 +12,8 @@ export function TechTag({
       className={cn(
         "inline-block text-xs font-mono px-2 py-[3px] rounded-[4px] tracking-[0.01em]",
         glow
-          ? "bg-accent-sky-dark text-accent-sky-light"
-          : "bg-white/[0.04] text-zinc-400 border-[0.5px] border-white/[0.06]"
+          ? "border border-primary/20 bg-accent text-accent-foreground"
+          : "border border-border bg-secondary text-muted-foreground"
       )}
     >
       {children}

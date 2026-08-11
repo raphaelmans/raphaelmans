@@ -1,0 +1,266 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-08-10T08:53:07Z",
+  "title": "Design System: Raphael Mansueto Portfolio",
+  "extensions": {
+    "colorMeta": {
+      "signal-300": {
+        "role": "primary",
+        "displayName": "Signal Sky 300",
+        "canonical": "oklch(82.8% 0.101 230.318)",
+        "tonalRamp": ["#082f49", "#0c4a6e", "#0369a1", "#0284c7", "#38bdf8", "#7dd3fc", "#bae6fd", "#f0f9ff"]
+      },
+      "signal-400": {
+        "role": "primary",
+        "displayName": "Signal Sky 400",
+        "canonical": "oklch(75.4% 0.139 232.661)",
+        "tonalRamp": ["#082f49", "#0c4a6e", "#0369a1", "#0284c7", "#38bdf8", "#7dd3fc", "#bae6fd", "#f0f9ff"]
+      },
+      "signal-600": {
+        "role": "primary",
+        "displayName": "Signal Sky 600",
+        "canonical": "oklch(58.8% 0.139 241.966)",
+        "tonalRamp": ["#082f49", "#0c4a6e", "#0369a1", "#0284c7", "#38bdf8", "#7dd3fc", "#bae6fd", "#f0f9ff"]
+      },
+      "signal-700": {
+        "role": "primary",
+        "displayName": "Signal Sky 700",
+        "canonical": "oklch(50% 0.119 242.749)",
+        "tonalRamp": ["#082f49", "#0c4a6e", "#0369a1", "#0284c7", "#38bdf8", "#7dd3fc", "#bae6fd", "#f0f9ff"]
+      },
+      "signal-900": {
+        "role": "primary",
+        "displayName": "Signal Sky 900",
+        "canonical": "oklch(39.1% 0.085 240.876)",
+        "tonalRamp": ["#082f49", "#0c4a6e", "#0369a1", "#0284c7", "#38bdf8", "#7dd3fc", "#bae6fd", "#f0f9ff"]
+      },
+      "signal-950": {
+        "role": "primary",
+        "displayName": "Signal Sky 950",
+        "canonical": "oklch(29.3% 0.063 243.157)",
+        "tonalRamp": ["#082f49", "#0c4a6e", "#0369a1", "#0284c7", "#38bdf8", "#7dd3fc", "#bae6fd", "#f0f9ff"]
+      },
+      "signal-soft": {
+        "role": "primary",
+        "displayName": "Signal Sky Soft",
+        "canonical": "oklch(96.1% 0.017 225.189)",
+        "tonalRamp": ["#082f49", "#0c4a6e", "#0369a1", "#0284c7", "#38bdf8", "#7dd3fc", "#bae6fd", "#e7f5fb"]
+      },
+      "midnight-950": {
+        "role": "neutral",
+        "displayName": "Midnight Zinc 950",
+        "canonical": "oklch(14.1% 0.004 285.823)",
+        "tonalRamp": ["#09090b", "#18181b", "#27272a", "#3f3f46", "#71717a", "#a1a1aa", "#f4f4f5", "#fafafa"]
+      },
+      "midnight-900": {
+        "role": "neutral",
+        "displayName": "Midnight Zinc 900",
+        "canonical": "oklch(21% 0.006 285.885)",
+        "tonalRamp": ["#09090b", "#18181b", "#27272a", "#3f3f46", "#71717a", "#a1a1aa", "#f4f4f5", "#fafafa"]
+      },
+      "midnight-800": {
+        "role": "neutral",
+        "displayName": "Midnight Zinc 800",
+        "canonical": "oklch(27.4% 0.005 286.033)",
+        "tonalRamp": ["#09090b", "#18181b", "#27272a", "#3f3f46", "#71717a", "#a1a1aa", "#f4f4f5", "#fafafa"]
+      },
+      "midnight-500": {
+        "role": "neutral",
+        "displayName": "Midnight Zinc 500",
+        "canonical": "oklch(55.2% 0.014 285.938)",
+        "tonalRamp": ["#09090b", "#18181b", "#27272a", "#3f3f46", "#71717a", "#a1a1aa", "#f4f4f5", "#fafafa"]
+      },
+      "midnight-400": {
+        "role": "neutral",
+        "displayName": "Midnight Zinc 400",
+        "canonical": "oklch(71.2% 0.013 286.067)",
+        "tonalRamp": ["#09090b", "#18181b", "#27272a", "#3f3f46", "#71717a", "#a1a1aa", "#f4f4f5", "#fafafa"]
+      },
+      "midnight-100": {
+        "role": "neutral",
+        "displayName": "Midnight Zinc 100",
+        "canonical": "oklch(96.7% 0.001 286.375)",
+        "tonalRamp": ["#09090b", "#18181b", "#27272a", "#3f3f46", "#71717a", "#a1a1aa", "#f4f4f5", "#fafafa"]
+      },
+      "midnight-50": {
+        "role": "neutral",
+        "displayName": "Midnight Zinc 50",
+        "canonical": "oklch(98.5% 0 0)",
+        "tonalRamp": ["#09090b", "#18181b", "#27272a", "#3f3f46", "#71717a", "#a1a1aa", "#f4f4f5", "#fafafa"]
+      },
+      "paper-canvas": {
+        "role": "neutral",
+        "displayName": "Warm Paper Canvas",
+        "canonical": "oklch(97.6% 0.003 106.448)",
+        "tonalRamp": ["#1c1c1a", "#3f3f3b", "#686864", "#a7a7a2", "#d8d8d3", "#e2e2de", "#f0f0ed", "#f7f7f5"]
+      },
+      "paper-surface": {
+        "role": "neutral",
+        "displayName": "Warm Paper Surface",
+        "canonical": "oklch(100% 0 0)",
+        "tonalRamp": ["#1c1c1a", "#3f3f3b", "#686864", "#a7a7a2", "#d8d8d3", "#e2e2de", "#f7f7f5", "#ffffff"]
+      },
+      "paper-secondary": {
+        "role": "neutral",
+        "displayName": "Warm Paper Secondary",
+        "canonical": "oklch(95.4% 0.004 106.475)",
+        "tonalRamp": ["#1c1c1a", "#3f3f3b", "#686864", "#a7a7a2", "#d8d8d3", "#e2e2de", "#f0f0ed", "#f7f7f5"]
+      },
+      "paper-muted": {
+        "role": "neutral",
+        "displayName": "Warm Paper Muted",
+        "canonical": "oklch(96.3% 0.004 106.474)",
+        "tonalRamp": ["#1c1c1a", "#3f3f3b", "#686864", "#a7a7a2", "#d8d8d3", "#e2e2de", "#f0f0ed", "#f3f3f0"]
+      },
+      "paper-border": {
+        "role": "neutral",
+        "displayName": "Warm Paper Border",
+        "canonical": "oklch(91.2% 0.005 106.506)",
+        "tonalRamp": ["#1c1c1a", "#3f3f3b", "#686864", "#a7a7a2", "#d8d8d3", "#e2e2de", "#f0f0ed", "#f7f7f5"]
+      },
+      "paper-input": {
+        "role": "neutral",
+        "displayName": "Warm Paper Input",
+        "canonical": "oklch(88.1% 0.007 106.538)",
+        "tonalRamp": ["#1c1c1a", "#3f3f3b", "#686864", "#a7a7a2", "#d8d8d3", "#e2e2de", "#f0f0ed", "#f7f7f5"]
+      },
+      "graphite-primary": {
+        "role": "neutral",
+        "displayName": "Graphite Ink Primary",
+        "canonical": "oklch(22.6% 0.004 106.7)",
+        "tonalRamp": ["#1c1c1a", "#3f3f3b", "#686864", "#a7a7a2", "#d8d8d3", "#e2e2de", "#f0f0ed", "#f7f7f5"]
+      },
+      "graphite-secondary": {
+        "role": "neutral",
+        "displayName": "Graphite Ink Secondary",
+        "canonical": "oklch(36.6% 0.007 106.727)",
+        "tonalRamp": ["#1c1c1a", "#3f3f3b", "#686864", "#a7a7a2", "#d8d8d3", "#e2e2de", "#f0f0ed", "#f7f7f5"]
+      },
+      "graphite-muted": {
+        "role": "neutral",
+        "displayName": "Graphite Ink Muted",
+        "canonical": "oklch(51.6% 0.006 106.614)",
+        "tonalRamp": ["#1c1c1a", "#3f3f3b", "#686864", "#a7a7a2", "#d8d8d3", "#e2e2de", "#f0f0ed", "#f7f7f5"]
+      }
+    },
+    "typographyMeta": {
+      "display": { "displayName": "Display", "purpose": "Hero and case-study headlines only." },
+      "headline": { "displayName": "Headline", "purpose": "Major case-study and closing-action headings." },
+      "title": { "displayName": "Title", "purpose": "Roles, projects, and compact proof names." },
+      "body": { "displayName": "Body", "purpose": "Narrative, evidence, and supporting explanation." },
+      "label": { "displayName": "Technical Label", "purpose": "Dates, status, metadata, and terse technical identifiers." }
+    },
+    "shadows": [],
+    "motion": [
+      { "name": "state-fast", "value": "150ms cubic-bezier(0.22, 1, 0.36, 1)", "purpose": "Color and icon feedback for hover and focus." },
+      { "name": "state-standard", "value": "200ms cubic-bezier(0.22, 1, 0.36, 1)", "purpose": "Surface and border response on evidence rows." },
+      { "name": "navigation", "value": "300ms cubic-bezier(0.22, 1, 0.36, 1)", "purpose": "Sticky navigation background, border, and mobile menu state." },
+      { "name": "reduced-motion", "value": "0ms", "purpose": "Instant non-essential state changes when reduced motion is requested." }
+    ],
+    "breakpoints": [
+      { "name": "sm", "value": "640px" },
+      { "name": "md", "value": "768px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary-dark",
+      "description": "The single highest-priority action at a decision point.",
+      "html": "<button class=\"ds-btn-primary\">VIEW EXPERIENCE <svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" aria-hidden=\"true\"><path d=\"M7 17 17 7M7 7h10v10\"/></svg></button>",
+      "css": ".ds-btn-primary { display:inline-flex; min-height:40px; align-items:center; justify-content:center; gap:8px; padding:10px 16px; border:0; border-radius:8px; background:var(--primary); color:var(--primary-foreground); font:500 14px/20px Inter,system-ui,sans-serif; transition:background-color 150ms cubic-bezier(.22,1,.36,1); } .ds-btn-primary:hover { background:color-mix(in oklab,var(--primary) 82%,var(--foreground)); } .ds-btn-primary:focus-visible { outline:2px solid var(--ring); outline-offset:3px; }"
+    },
+    {
+      "name": "Secondary Button",
+      "kind": "button",
+      "refersTo": "button-secondary-dark",
+      "description": "A quiet utility action that supports but never competes with the primary CTA.",
+      "html": "<button class=\"ds-btn-secondary\">DOWNLOAD RÉSUMÉ</button>",
+      "css": ".ds-btn-secondary { display:inline-flex; min-height:40px; align-items:center; justify-content:center; padding:10px 16px; border:1px solid var(--border); border-radius:8px; background:var(--card); color:var(--card-foreground); font:400 14px/20px Inter,system-ui,sans-serif; transition:background-color 150ms cubic-bezier(.22,1,.36,1),border-color 150ms cubic-bezier(.22,1,.36,1); } .ds-btn-secondary:hover { background:var(--secondary); } .ds-btn-secondary:focus-visible { outline:2px solid var(--ring); outline-offset:3px; }"
+    },
+    {
+      "name": "Text Link",
+      "kind": "button",
+      "refersTo": "text-link-dark",
+      "description": "A direct route to supporting proof or utilities.",
+      "html": "<a class=\"ds-text-link\" href=\"#\">READ CASE STUDY →</a>",
+      "css": ".ds-text-link { display:inline-flex; min-height:40px; align-items:center; padding:8px 4px; color:var(--primary); font:500 14px/20px Inter,system-ui,sans-serif; text-decoration:none; transition:color 150ms cubic-bezier(.22,1,.36,1); } .ds-text-link:hover { color:color-mix(in oklab,var(--primary) 75%,var(--foreground)); } .ds-text-link:focus-visible { outline:2px solid var(--ring); outline-offset:2px; text-decoration:underline; }"
+    },
+    {
+      "name": "Signal Tech Tag",
+      "kind": "chip",
+      "refersTo": "tag-signal-dark",
+      "description": "A rare emphasized technical identifier, not a default treatment for every technology.",
+      "html": "<span class=\"ds-tech-tag\">PRODUCTION AI</span>",
+      "css": ".ds-tech-tag { display:inline-flex; align-items:center; padding:3px 8px; border:1px solid color-mix(in oklab,var(--primary) 18%,transparent); border-radius:4px; background:var(--accent); color:var(--accent-foreground); font:400 12px/16px 'Geist Mono',ui-monospace,monospace; letter-spacing:.01em; }"
+    },
+    {
+      "name": "Evidence Row",
+      "kind": "card",
+      "refersTo": "evidence-row-dark",
+      "description": "An editorial experience or selected-work entry whose proof remains complete at rest.",
+      "html": "<article class=\"ds-evidence-row\"><div><h3>SENIOR FULL STACK DEVELOPER</h3><span>JUN 2025 — PRESENT</span></div><p>Scope, ownership, constraint, and a consequential engineering decision.</p></article>",
+      "css": ".ds-evidence-row { padding:16px; border:1px solid transparent; border-radius:10px; background:transparent; color:var(--foreground); transition:background-color 200ms cubic-bezier(.22,1,.36,1),border-color 200ms cubic-bezier(.22,1,.36,1); } .ds-evidence-row:hover { border-color:var(--border); background:color-mix(in oklab,var(--card) 45%,transparent); } .ds-evidence-row>div { display:flex; justify-content:space-between; gap:16px; } .ds-evidence-row h3 { margin:0; font:500 16px/1.3 Inter,system-ui,sans-serif; } .ds-evidence-row span { color:var(--muted-foreground); font:400 12px/1.5 'Geist Mono',ui-monospace,monospace; } .ds-evidence-row p { max-width:68ch; margin:12px 0 0; color:var(--muted-foreground); font:400 15px/1.7 Inter,system-ui,sans-serif; } .ds-evidence-row:focus-within { outline:2px solid var(--ring); outline-offset:2px; }"
+    },
+    {
+      "name": "Portfolio Navigation",
+      "kind": "nav",
+      "refersTo": "navigation-dark",
+      "description": "A quiet 64px orientation layer with active-state emphasis and room for the future theme utility.",
+      "html": "<nav class=\"ds-nav\"><a class=\"ds-brand\" href=\"#\">RM</a><div><a class=\"ds-active\" href=\"#\">Experience</a><a href=\"#\">Work</a><button aria-label=\"Change color theme\">◐</button></div></nav>",
+      "css": ".ds-nav { display:flex; height:64px; align-items:center; justify-content:space-between; padding:0 24px; border-bottom:1px solid var(--border); background:color-mix(in oklab,var(--background) 90%,transparent); color:var(--muted-foreground); } .ds-nav a { min-height:44px; display:inline-flex; align-items:center; padding:0 10px; color:inherit; font:400 12px/1.5 'Geist Mono',ui-monospace,monospace; text-decoration:none; } .ds-nav .ds-brand { padding:0; color:var(--foreground); font:600 16px/1 Inter,system-ui,sans-serif; } .ds-nav .ds-active,.ds-nav a:hover { color:var(--primary); } .ds-nav button { width:44px; height:44px; border:0; background:transparent; color:var(--muted-foreground); } .ds-nav a:focus-visible,.ds-nav button:focus-visible { outline:2px solid var(--ring); outline-offset:2px; border-radius:4px; }"
+    },
+    {
+      "name": "Proof Line",
+      "kind": "custom",
+      "refersTo": "proof-line-dark",
+      "description": "A single quiet credibility row, explicitly not a dashboard metric grid.",
+      "html": "<p class=\"ds-proof-line\"><strong>5+ years</strong><span>Production AI</span><span>TypeScript + Go</span><span>Web + mobile</span></p>",
+      "css": ".ds-proof-line { display:flex; flex-wrap:wrap; gap:8px 18px; align-items:center; padding:12px 16px; border:1px solid var(--border); border-radius:10px; background:var(--card); color:var(--muted-foreground); font:400 12px/1.5 'Geist Mono',ui-monospace,monospace; } .ds-proof-line strong { color:var(--foreground); font-weight:500; } .ds-proof-line span::before { content:'·'; margin-right:18px; color:var(--border); }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Clear Signal",
+    "overview": "The system turns dense engineering experience into decisive evidence. It should feel like a carefully prepared technical briefing: calm enough to scan quickly, precise enough to reward scrutiny, and confident without advertising theatrics. The opening viewport resolves identity, specialty, credibility, and the next action; later sections deepen the case without repeating it. The composition is narrow and text-led: a 740px homepage reading column, an 860px case-study column, 24px page gutters, and varied vertical rhythm anchored by a 76px section interval. Content remains the primary visual material. Signal Sky marks action and active information, while neutral contrast establishes hierarchy. The approved system pairs Midnight Zinc in dark mode with Warm Paper and Graphite Ink in light mode.",
+    "keyCharacteristics": [
+      "Evidence-led hierarchy with one clear action per decision point.",
+      "Restrained 90/9/1 color balance: neutral structure, selective Signal Sky, semantic status color only when needed.",
+      "Compact, readable typography with mono reserved for metadata and technical labels.",
+      "Flat, quiet surfaces separated by tone, spacing, and hairline borders.",
+      "Essential content visible immediately, with motion limited to responsive state feedback.",
+      "Light and dark modes that share semantic roles without mechanically mirroring neutral colors."
+    ],
+    "rules": [
+      { "name": "The Clear Signal Rule", "body": "Signal Sky means ‘pay attention or act.’ It identifies the primary action, links, active navigation, keyboard focus, and genuinely selected information. It never decorates generic surfaces or long prose.", "section": "colors" },
+      { "name": "The 90/9/1 Rule", "body": "Approximately 90% of a surface is neutral, 9% may carry Signal Sky, and 1% is reserved for real semantic status feedback. This is a restraint doctrine, not a pixel-count exercise.", "section": "colors" },
+      { "name": "The Contrast Floor Rule", "body": "Meaningful normal text must meet WCAG 2.2 AA in both themes. Zinc 600 and Zinc 700 are forbidden for meaningful text on Midnight Zinc; use midnight-500 or stronger.", "section": "colors" },
+      { "name": "The Semantic Parity Rule", "body": "Components consume background/foreground roles such as primary and primary-foreground. Dark and light themes may use different raw values, but a role's meaning never changes.", "section": "colors" },
+      { "name": "The Evidence Voice Rule", "body": "Prose states scope, ownership, constraints, decisions, and outcomes. Technology names support that argument; they never replace it.", "section": "typography" },
+      { "name": "The Mono Ration Rule", "body": "Geist Mono is restricted to metadata, dates, status, and terse technical labels. If an entire section's identity depends on mono uppercase, the hierarchy is too weak.", "section": "typography" },
+      { "name": "The Natural Heading Rule", "body": "Section headings use direct descriptive language and varied scale. Repeated tiny uppercase tracked eyebrows are prohibited as page scaffolding.", "section": "typography" },
+      { "name": "The Flat-by-Default Rule", "body": "Surfaces rest in the page rather than float above it. If a card needs a shadow to be understood, its hierarchy, spacing, or boundary is unresolved.", "section": "elevation" },
+      { "name": "The Earned Surface Rule", "body": "A container receives a surface and border only when it groups evidence, creates a control boundary, or distinguishes an actionable closing area. Never box prose by reflex.", "section": "elevation" },
+      { "name": "The Functional Blur Rule", "body": "Backdrop blur is allowed only on sticky navigation or another moving overlap where it materially preserves legibility.", "section": "elevation" }
+    ],
+    "dos": [
+      "Do make identity, specialty, professional credibility, and the next action understandable within the opening viewport.",
+      "Do preserve a 740px homepage reading column, an 860px case-study column, 24px gutters, and varied vertical rhythm around the 76px section cadence.",
+      "Do use semantic theme roles for every foreground/background pair and test default, hover, focus-visible, active, selected, disabled, and destructive states in both themes.",
+      "Do follow system preference by default and provide a persistent light/dark override through an SSR-safe next-themes provider.",
+      "Do keep meaningful text at or above the approved contrast floor and maintain visible keyboard focus and comfortable touch targets.",
+      "Do spend visual complexity on inspectable evidence: screenshots, sanitized diagrams, case-study structure, ownership, constraints, and decisions.",
+      "Do keep essential content visible without JavaScript-triggered entrance effects."
+    ],
+    "donts": [
+      "Don't make the portfolio resemble a SaaS dashboard, including metric-cell proof strips, identical card grids, or decorative analytics patterns.",
+      "Don't build a heavily animated showcase. Scroll-triggered opacity gates, uniform section reveals, bounce, elastic motion, and ornamental parallax are prohibited.",
+      "Don't use a generic developer template assembled from repeated uppercase labels, numbered section scaffolds, and technology inventories.",
+      "Don't use Signal Sky for every heading, every technology tag, generic card backgrounds, long prose, or semantic success/warning/error states.",
+      "Don't use raw Zinc 600 or Zinc 700 for meaningful normal-sized text on the dark canvas.",
+      "Don't maintain competing primary, accent, and accent-sky concepts. Migrate components to the semantic contract.",
+      "Don't render a different server and client content tree based on the active theme. Theme variation belongs in CSS variables until the mounted state is known.",
+      "Don't use gradient text, decorative glassmorphism, colored side-stripe borders, or shadows to compensate for weak hierarchy."
+    ]
+  }
+}

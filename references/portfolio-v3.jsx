@@ -27,12 +27,16 @@ function useActiveSection(ids) {
       },
       { rootMargin: "-30% 0px -65% 0px" }
     );
-    ids.forEach((id) => {
-      const el = document.getElementById(id);
-      if (el) obs.observe(el);
+    const sections = ids.flatMap((id) => {
+      const section = document.getElementById(id);
+      return section ? [section] : [];
     });
-    return () => obs.disconnect();
-  }, []);
+    sections.forEach((section) => obs.observe(section));
+    return () => {
+      sections.forEach((section) => obs.unobserve(section));
+      obs.disconnect();
+    };
+  }, [ids]);
   return active;
 }
 
@@ -115,6 +119,7 @@ function Section({ id, label, children }) {
 // ── Cards ──
 function ExperienceItem({ period, role, company, children, tags = [], glowTags = [] }) {
   const [hov, setHov] = useState(false);
+  const glowingTags = new Set(glowTags);
   return (
     <div
       onMouseEnter={() => setHov(true)}
@@ -124,7 +129,7 @@ function ExperienceItem({ period, role, company, children, tags = [], glowTags =
         borderRadius: 8,
         border: `0.5px solid ${hov ? C.borderHover : "transparent"}`,
         background: hov ? "rgba(255,255,255,0.015)" : "transparent",
-        transition: "all 0.2s",
+        transition: "border-color 0.2s, background-color 0.2s",
         marginLeft: -16,
         marginRight: -16,
       }}
@@ -169,8 +174,8 @@ function ExperienceItem({ period, role, company, children, tags = [], glowTags =
       </p>
 
       <div style={{ display: "flex", flexWrap: "wrap", gap: 4 }}>
-        {tags.map((t, i) => (
-          <Tag key={i} glow={glowTags.includes(t)}>{t}</Tag>
+        {tags.map((t) => (
+          <Tag key={t} glow={glowingTags.has(t)}>{t}</Tag>
         ))}
       </div>
     </div>
@@ -179,6 +184,7 @@ function ExperienceItem({ period, role, company, children, tags = [], glowTags =
 
 function ProjectItem({ title, url, children, tags = [], glowTags = [] }) {
   const [hov, setHov] = useState(false);
+  const glowingTags = new Set(glowTags);
   const El = url ? "a" : "div";
   const props = url ? { href: url, target: "_blank", rel: "noopener noreferrer" } : {};
   return (
@@ -192,7 +198,7 @@ function ProjectItem({ title, url, children, tags = [], glowTags = [] }) {
         borderRadius: 8,
         border: `0.5px solid ${hov ? C.borderHover : "transparent"}`,
         background: hov ? "rgba(255,255,255,0.015)" : "transparent",
-        transition: "all 0.2s",
+        transition: "border-color 0.2s, background-color 0.2s",
         textDecoration: "none",
         marginLeft: -16,
         marginRight: -16,
@@ -219,7 +225,7 @@ function ProjectItem({ title, url, children, tags = [], glowTags = [] }) {
             fill="none"
             style={{
               opacity: hov ? 0.7 : 0.25,
-              transition: "all 0.15s",
+              transition: "opacity 0.15s, transform 0.15s",
               transform: hov ? "translate(1px,-1px)" : "none",
             }}
           >
@@ -239,8 +245,8 @@ function ProjectItem({ title, url, children, tags = [], glowTags = [] }) {
       </p>
 
       <div style={{ display: "flex", flexWrap: "wrap", gap: 4 }}>
-        {tags.map((t, i) => (
-          <Tag key={i} glow={glowTags.includes(t)}>{t}</Tag>
+        {tags.map((t) => (
+          <Tag key={t} glow={glowingTags.has(t)}>{t}</Tag>
         ))}
       </div>
     </El>
@@ -299,7 +305,7 @@ export default function Portfolio() {
           background: scrolled ? "rgba(9,9,11,0.88)" : "transparent",
           backdropFilter: scrolled ? "blur(12px)" : "none",
           borderBottom: scrolled ? `0.5px solid ${C.border}` : "0.5px solid transparent",
-          transition: "all 0.3s",
+          transition: "background-color 0.3s, backdrop-filter 0.3s, border-color 0.3s",
         }}
       >
         <div
@@ -409,26 +415,20 @@ export default function Portfolio() {
               Building blockchain-based fintech bridging traditional finance with on-chain settlement. Delivered the sole operator-facing frontend (admin, compliance, transactions, ledger). Built 3 NestJS gateway services enabling automated custody-to-settlement flow. Unified wallet signing and enterprise API execution into one transport layer. Secured institutional transfers with AWS KMS, mTLS, and EIP-712.
             </ExperienceItem>
 
-            <ExperienceItem period="May – Dec 2025" role="Full Stack Engineer" company="Ample · AI PR Pipeline"
-              tags={["Mastra", "AI SDK", "Gemini", "xAI", "Retell AI", "tRPC", "Mux", "Stripe", "Langfuse"]}
-              glowTags={["Mastra", "AI SDK", "Gemini", "xAI", "Retell AI"]}>
-              Automated the full PR workflow: daily AI news research → personalized interview topics → Retell voice interviews → auto-captioned clips → scheduled multi-platform social posting. Routed 3 LLM providers per task behind a provider-agnostic interface. Orchestrated webhooks across the full pipeline — each event triggers the next stage.
-            </ExperienceItem>
-
-            <ExperienceItem period="Feb 2023 – Apr 2025" role="Lead Front-End Engineer" company="Hustlewing"
-              tags={["Next.js", "React", "OpenAI", "LangChain", "Supabase", "Jest"]}
-              glowTags={["OpenAI", "LangChain"]}>
-              Migrated platform from Webflow to Next.js — 300% user base growth in six months. Embedded OpenAI and LangChain for resume extraction and agentic UX agents, lifting engagement 20%. Directed design overhauls and managed cross-team delivery.
+            <ExperienceItem period="Feb 2023 – Dec 2025" role="Full-Stack AI Integration Engineer" company="HustleWing"
+              tags={["Next.js", "Go", "OpenAI", "LangGraph", "Mastra", "Retell AI", "Pub/Sub", "Langfuse"]}
+              glowTags={["OpenAI", "LangGraph", "Mastra", "Retell AI"]}>
+              Led product delivery across HustleWing&apos;s core platform and employer projects. Built Go and OpenAI resume-processing services with reliable Pub/Sub execution, a production research-to-publishing workflow, and customizable campaign drafts with a feedback loop and human decision gate.
             </ExperienceItem>
 
             <ExperienceItem period="Jun – Nov 2022" role="Full-Stack Developer" company="Outliant"
               tags={["React", "Next.js", "Node.js", "Express"]} glowTags={[]}>
-              Designed end-to-end features for a social platform — React/Next.js frontend and RESTful APIs. Accelerated delayed sprints to on-time delivery.
+              Built Next.js customer experiences, Express APIs, server-rendered forms, and administrative tools for a social platform. Cleared delayed sprint work and technical debt to restore delivery momentum.
             </ExperienceItem>
 
             <ExperienceItem period="Jun 2021 – Mar 2022" role="Junior Software Engineer" company="Vibravid"
               tags={["AngularJS", "Web3.js", "Solidity", "Hardhat", "Node.js"]} glowTags={["Solidity", "Web3.js"]}>
-              Built Web3 UIs for smart contract interactions. Deployed Solidity contracts on Ethereum via Hardhat. Integrated Tron, WAX, Syscoin blockchain APIs. Built a Telegram bot for community management and airdrop automation.
+              Built Web3 interfaces and developed, tested, and deployed Solidity contracts on Ethereum for token transactions and platform features. Integrated Tron, WAX, and Syscoin APIs plus Telegram automation.
             </ExperienceItem>
           </div>
         </Section>
@@ -436,15 +436,15 @@ export default function Portfolio() {
         {/* ── Projects ── */}
         <Section id="projects" label="Personal Projects">
           <div style={{ display: "flex", flexDirection: "column", gap: 4 }}>
-            <ProjectItem title="Ugnay — AI Storefront Builder" url="https://ugnay.ph"
-              tags={["Mastra", "AI SDK v6", "Next.js 16", "tRPC", "Supabase", "pgvector", "QStash"]}
-              glowTags={["Mastra", "AI SDK v6"]}>
-              Conversational AI that builds web pages for Filipino agents through chat. Replaced 5-step form onboarding with a 2-step conversation. AI modifies a typed JSON spec — not raw HTML. RAG chatbot grounded in agent's own content refuses to hallucinate.
+            <ProjectItem title="BookAgad — Configurable Booking SaaS" url="https://bookagad.ph"
+              tags={["Next.js 16", "TypeScript", "XState", "tRPC", "PostgreSQL", "Vitest"]}
+              glowTags={["XState"]}>
+              Early-access booking platform for six service-workflow models. The domain model was validated against 36 Philippine business presets and a 195-test workflow proof of concept.
             </ProjectItem>
 
             <ProjectItem title="KudosCourts — Sports Court Booking" url="https://kudoscourts.ph"
               tags={["Next.js", "TypeScript", "Supabase", "tRPC", "QStash", "Resend"]} glowTags={[]}>
-              Court discovery and reservation for the PH market. Booking engine handling full lifecycle across walk-in, advance, membership, and recurring models. Event-driven notifications. Shipped solo.
+              Sports discovery and reservation for the Philippine market across web and mobile. Review-gated data ingestion, typed APIs, realtime workflows, and event-driven notifications. Built and launched independently.
             </ProjectItem>
           </div>
         </Section>

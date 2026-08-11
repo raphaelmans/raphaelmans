@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="360" height="690" viewBox="0 0 360 690" role="img" aria-labelledby="title desc">
+  <title id="title">Mobile Ample News production pipeline</title>
+  <desc id="desc">Five readable stages from grounded evidence through typed AI work and human confirmation to media, publishing, and telemetry.</desc>
+  <rect width="360" height="690" rx="20" fill="#f6f6f3"/>
+  <text x="24" y="42" fill="#18181b" font-family="Arial, sans-serif" font-size="22" font-weight="700">Research to publishing</text>
+  <text x="24" y="66" fill="#52525b" font-family="Arial, sans-serif" font-size="14">Sanitized workflow · mobile summary</text>
+  <g font-family="Arial, sans-serif">
+    <rect x="24" y="92" width="312" height="82" rx="14" fill="#fff" stroke="#d4d4d8" stroke-width="2"/>
+    <text x="44" y="123" fill="#075985" font-size="14" font-weight="700">01 · GROUNDED EVIDENCE</text>
+    <text x="44" y="151" fill="#18181b" font-size="17" font-weight="700">Company + current news</text>
+    <path d="M180 174v24" stroke="#0369a1" stroke-width="3"/>
+    <rect x="24" y="198" width="312" height="82" rx="14" fill="#fff" stroke="#d4d4d8" stroke-width="2"/>
+    <text x="44" y="229" fill="#075985" font-size="14" font-weight="700">02 · TYPED WORKFLOW</text>
+    <text x="44" y="257" fill="#18181b" font-size="17" font-weight="700">Persisted stages + retries</text>
+    <path d="M180 280v24" stroke="#0369a1" stroke-width="3"/>
+    <rect x="24" y="304" width="312" height="100" rx="14" fill="#e0f2fe" stroke="#0369a1" stroke-width="3"/>
+    <text x="44" y="335" fill="#075985" font-size="14" font-weight="700">03 · HUMAN BOUNDARY</text>
+    <text x="44" y="363" fill="#18181b" font-size="17" font-weight="700">Read → confirm → write</text>
+    <text x="44" y="386" fill="#52525b" font-size="14">Voice interview + transcript</text>
+    <path d="M180 404v24" stroke="#0369a1" stroke-width="3"/>
+    <rect x="24" y="428" width="312" height="82" rx="14" fill="#fff" stroke="#d4d4d8" stroke-width="2"/>
+    <text x="44" y="459" fill="#075985" font-size="14" font-weight="700">04 · MEDIA</text>
+    <text x="44" y="487" fill="#18181b" font-size="17" font-weight="700">Video + captions + clips</text>
+    <path d="M180 510v24" stroke="#0369a1" stroke-width="3"/>
+    <rect x="24" y="534" width="312" height="82" rx="14" fill="#fff" stroke="#d4d4d8" stroke-width="2"/>
+    <text x="44" y="565" fill="#075985" font-size="14" font-weight="700">05 · DISTRIBUTION</text>
+    <text x="44" y="593" fill="#18181b" font-size="17" font-weight="700">Scheduled → posted / failed</text>
+    <rect x="24" y="636" width="312" height="34" rx="10" fill="#e0f2fe" stroke="#0369a1"/>
+    <text x="40" y="658" fill="#075985" font-size="14" font-weight="700">Correlated traces across every stage</text>
+  </g>
+</svg>
