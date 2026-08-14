@@ -3,7 +3,7 @@ import { SectionHeading } from "./section-heading";
 
 export function ContactSection() {
   return (
-    <section id="contact" tabIndex={-1} className="scroll-mt-20 pb-[76px] outline-none">
+    <section id="contact" tabIndex={-1} className="pb-[76px] outline-none">
       <SectionHeading>Start a relevant conversation</SectionHeading>
       <div className="border-t border-border pt-6">
           <p className="max-w-[590px] text-[15px] leading-[1.7] text-secondary-foreground">

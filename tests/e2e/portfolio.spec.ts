@@ -238,6 +238,19 @@ test("mobile navigation and skip paths preserve keyboard orientation", async ({ 
   await expect(page.locator("#work")).toBeFocused();
 });
 
+test("header anchors use native smooth scrolling with one sticky offset", async ({ page }) => {
+  await page.setViewportSize({ width: 1440, height: 1000 });
+  await page.emulateMedia({ reducedMotion: "no-preference" });
+  await page.goto("/");
+
+  await expect.poll(() => page.locator("html").evaluate((element) => getComputedStyle(element).scrollBehavior)).toBe("smooth");
+  await page.getByRole("link", { name: "Experience", exact: true }).click();
+  await expect.poll(() => page.locator("#experience").evaluate((section) => Math.round(section.getBoundingClientRect().top))).toBe(80);
+
+  await page.emulateMedia({ reducedMotion: "reduce" });
+  await expect.poll(() => page.locator("html").evaluate((element) => getComputedStyle(element).scrollBehavior)).toBe("auto");
+});
+
 test("mobile primary and utility actions meet the interaction target contract", async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 });
   await page.goto("/");

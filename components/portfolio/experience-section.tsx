@@ -20,7 +20,7 @@ const earlierExperience = experiences.filter(
 
 export function ExperienceSection() {
   return (
-    <section id="experience" tabIndex={-1} className="scroll-mt-20 pb-[92px] outline-none">
+    <section id="experience" tabIndex={-1} className="pb-[92px] outline-none">
       <SectionHeading>Experience that carries the work</SectionHeading>
       <div className="divide-y divide-border" data-experience-list>
         {primaryExperience.map((experience) => (

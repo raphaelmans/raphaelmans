@@ -4,7 +4,7 @@ import { ProjectItem } from "./project-item";
 
 export function FeaturedWorkSection() {
   return (
-    <section id="work" tabIndex={-1} className="scroll-mt-20 pb-[92px] outline-none">
+    <section id="work" tabIndex={-1} className="pb-[92px] outline-none">
       <SectionHeading>Selected work</SectionHeading>
       <p className="-mt-4 mb-8 max-w-[620px] text-[15px] leading-[1.7] text-muted-foreground">
         One flagship production-AI system, followed by two supporting product proofs.
