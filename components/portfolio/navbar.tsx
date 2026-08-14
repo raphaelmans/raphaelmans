@@ -5,6 +5,7 @@ import { useActiveSection } from "@/hooks/use-active-section";
 import { useScrollState } from "@/hooks/use-scroll-state";
 import { NAV_SECTIONS } from "@/data/navigation";
 import { cn } from "@/lib/utils";
+import { BrandHomeLink } from "@/components/brand/brand-home-link";
 import { ThemeMenu } from "./theme-menu";
 
 const navIds = NAV_SECTIONS.map((section) => section.id);
@@ -49,12 +50,7 @@ export function Navbar() {
     >
       <div className="max-w-[740px] mx-auto px-6">
         <div className="flex justify-between items-center h-16">
-          <a
-            href="#top"
-            className="text-base font-semibold text-foreground no-underline tracking-[-0.02em]"
-          >
-            Raphael Mansueto
-          </a>
+          <BrandHomeLink href="#top" />
 
           <div className="flex items-center gap-1">
             <div className="hidden items-center gap-4 sm:flex">

@@ -1,4 +1,8 @@
 import { expect, test, type Page } from "@playwright/test";
+import { caseStudies } from "../../data/case-studies";
+import { engineeringNotes } from "../../data/engineering-notes";
+import { latestPortfolioReviewDate } from "../../data/public-content";
+import { absoluteUrl, personId, siteConfig } from "../../lib/site";
 
 const publicRoutes = ["/", "/work/kudoscourts", "/work/ample-news", "/work/cravingsph"];
 
@@ -20,6 +24,178 @@ function collectUnexpectedConsole(page: Page) {
   page.on("pageerror", (error) => messages.push(error.message));
   return messages;
 }
+
+async function readJsonLd(page: Page, schemaType: string) {
+  const scripts = await page.locator('script[type="application/ld+json"]').allTextContents();
+  const schemas = scripts.map((source) => JSON.parse(source));
+  return schemas.find((schema) => schema["@type"] === schemaType);
+}
+
+const kudosCourtsCaseStudy = caseStudies.find((caseStudy) => caseStudy.slug === "kudoscourts");
+if (!kudosCourtsCaseStudy) throw new Error("Missing published KudosCourts case study fixture");
+
+test("every public content route exposes a working branded social image", async ({ page, request }) => {
+  const socialRoutes = [
+    { page: "/", image: "/opengraph-image" },
+    { page: "/engineering", image: "/engineering/opengraph-image" },
+    ...caseStudies.map((caseStudy) => ({
+      page: `/work/${caseStudy.slug}`,
+      image: `/work/${caseStudy.slug}/opengraph-image`,
+    })),
+    ...engineeringNotes.map((note) => ({
+      page: `/engineering/${note.slug}`,
+      image: `/engineering/${note.slug}/opengraph-image`,
+    })),
+  ];
+
+  for (const route of socialRoutes) {
+    await page.goto(route.page);
+    const expectedImageUrl = absoluteUrl(route.image);
+    await expect(page.locator('meta[property="og:image"]')).toHaveAttribute("content", expectedImageUrl);
+    await expect(page.locator('meta[name="twitter:image"]')).toHaveAttribute("content", expectedImageUrl);
+
+    const response = await request.get(route.image);
+    expect(response.status(), route.image).toBe(200);
+    expect(response.headers()["content-type"]).toContain("image/png");
+
+    const imageSource = `data:image/png;base64,${(await response.body()).toString("base64")}`;
+    await page.setContent(`<img alt="social preview" src="${imageSource}">`);
+    const dimensions = await page.getByAltText("social preview").evaluate((image: HTMLImageElement) => ({
+      width: image.naturalWidth,
+      height: image.naturalHeight,
+    }));
+    expect(dimensions).toEqual({ width: 1200, height: 630 });
+  }
+});
+
+test("brand identity is consistent across navigation and application icons", async ({ page, request }) => {
+  const routeHeaders = [
+    { route: "/", back: null },
+    { route: "/engineering", back: "Portfolio" },
+    { route: "/work/kudoscourts", back: "Selected Work" },
+    {
+      route: "/engineering/human-decision-gates-production-ai",
+      back: "Engineering notes",
+    },
+  ];
+
+  for (const entry of routeHeaders) {
+    await page.goto(entry.route);
+    const brandLink = page.locator("nav").getByRole("link", { name: "Raphael Mansueto", exact: true });
+    await expect(brandLink).toBeVisible();
+    await expect(brandLink.locator("svg")).toHaveCount(1);
+
+    if (entry.back) {
+      await expect(page.locator("main").getByRole("link", { name: entry.back, exact: true })).toBeVisible();
+      await expect(page.locator("nav").getByRole("link", { name: entry.back, exact: true })).toHaveCount(0);
+    }
+  }
+
+  await page.goto("/");
+  const iconHrefs = await page.locator('link[rel="icon"], link[rel="apple-touch-icon"]').evaluateAll((links) =>
+    links.map((link) => (link as HTMLLinkElement).href)
+  );
+  expect(iconHrefs.some((href) => href.includes("/favicon.ico"))).toBe(true);
+  expect(iconHrefs.some((href) => href.includes("/icon.svg"))).toBe(true);
+  expect(iconHrefs.some((href) => href.includes("/apple-icon"))).toBe(true);
+
+  for (const asset of ["/favicon.ico", "/icon.svg", "/apple-icon.png"]) {
+    const response = await request.get(asset);
+    expect(response.status(), asset).toBe(200);
+  }
+});
+
+test("rendered search signals share one canonical origin and complete schemas", async ({ page }) => {
+  await page.goto("/");
+  await expect(page).toHaveTitle(siteConfig.defaultTitle);
+  await expect(page.locator('meta[name="description"]')).toHaveAttribute("content", siteConfig.defaultDescription);
+  await expect(page.locator('link[rel="canonical"]')).toHaveAttribute("href", siteConfig.origin);
+  await expect(page.locator('meta[property="og:url"]')).toHaveAttribute("content", siteConfig.origin);
+
+  const profile = await readJsonLd(page, "ProfilePage");
+  expect(profile.url).toBe(siteConfig.origin);
+  expect(profile.mainEntity["@id"]).toBe(personId());
+  expect(profile.dateModified).toBe(latestPortfolioReviewDate);
+
+  await page.goto("/work/kudoscourts");
+  await expect(page).toHaveTitle("Realtime Reservation Architecture | Raphael Mansueto");
+  await expect(page.locator('link[rel="canonical"]')).toHaveAttribute("href", absoluteUrl("/work/kudoscourts"));
+  await expect(page.locator('meta[property="og:url"]')).toHaveAttribute("content", absoluteUrl("/work/kudoscourts"));
+
+  const article = await readJsonLd(page, "Article");
+  expect(article.url).toBe(absoluteUrl("/work/kudoscourts"));
+  expect(article.mainEntityOfPage["@id"]).toBe(article.url);
+  expect(article.image).toBe(absoluteUrl("/work/kudoscourts/opengraph-image"));
+  expect(article.author["@id"]).toBe(personId());
+  expect(article.dateModified).toBe(kudosCourtsCaseStudy.lastReviewed);
+});
+
+test("engineering notes preserve progressive disclosure across themes and viewports", async ({ page }) => {
+  const consoleMessages = collectUnexpectedConsole(page);
+  await page.addInitScript(() => localStorage.setItem("theme", "system"));
+
+  for (const colorScheme of ["light", "dark"] as const) {
+    await page.emulateMedia({ colorScheme });
+    for (const viewport of [
+      { width: 390, height: 844 },
+      { width: 1440, height: 1000 },
+    ]) {
+      await page.setViewportSize(viewport);
+      await page.goto("/engineering");
+      await expect(page.getByRole("heading", { level: 1, name: "Engineering decisions, explained." })).toBeVisible();
+      await expect(page.locator("main li > a")).toHaveCount(engineeringNotes.length);
+      expect(await page.evaluate(() => document.documentElement.scrollWidth <= document.documentElement.clientWidth)).toBe(true);
+
+      await page.goto("/engineering/human-decision-gates-production-ai");
+      await expect(page.getByRole("heading", { level: 1, name: "Human decision gates in production AI workflows" })).toBeVisible();
+      await expect(page.locator("[data-direct-answer]")).toBeVisible();
+      await expect(page.locator("[data-engineering-visual]")).toHaveCount(1);
+      await expect(page.locator("[data-engineering-sequence] > li")).toHaveCount(4);
+      await expect(page.getByRole("link", { name: /Ample News case study/ })).toHaveAttribute("href", "/work/ample-news");
+      const supportingContextPrecedesDetails = await page.locator("[data-supporting-case-context]").evaluate((context) => {
+        const visual = document.querySelector("[data-engineering-visual]");
+        const firstDetail = document.querySelector("article section[id]");
+        if (!visual || !firstDetail) return false;
+        return (
+          (context.compareDocumentPosition(visual) & Node.DOCUMENT_POSITION_FOLLOWING) !== 0 &&
+          (context.compareDocumentPosition(firstDetail) & Node.DOCUMENT_POSITION_FOLLOWING) !== 0
+        );
+      });
+      expect(supportingContextPrecedesDetails).toBe(true);
+      await expect(page.locator('link[rel="canonical"]')).toHaveAttribute(
+        "href",
+        absoluteUrl("/engineering/human-decision-gates-production-ai")
+      );
+      const noteArticle = await readJsonLd(page, "Article");
+      expect(noteArticle.url).toBe(absoluteUrl("/engineering/human-decision-gates-production-ai"));
+      expect(noteArticle.mainEntityOfPage["@id"]).toBe(noteArticle.url);
+      expect(noteArticle.image).toBe(
+        absoluteUrl("/engineering/human-decision-gates-production-ai/opengraph-image")
+      );
+      expect(await page.evaluate(() => document.documentElement.scrollWidth <= document.documentElement.clientWidth)).toBe(true);
+
+      const hierarchy = await page.locator("article h1, article h2").evaluateAll((headings) =>
+        headings.map((heading) => ({ tag: heading.tagName, text: heading.textContent?.trim() }))
+      );
+      expect(hierarchy[0]).toEqual({ tag: "H1", text: "Human decision gates in production AI workflows" });
+      expect(hierarchy.slice(1).every((heading) => heading.tag === "H2")).toBe(true);
+    }
+  }
+
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto("/engineering/human-decision-gates-production-ai");
+  await page.keyboard.press("Tab");
+  await expect(page.getByRole("link", { name: "Skip to main content" })).toBeVisible();
+  await page.keyboard.press("Enter");
+  await expect(page.locator("#main-content")).toBeFocused();
+
+  await page.goto("/");
+  await expect(page.getByRole("link", { name: "Engineering notes" })).toHaveCount(1);
+  for (const note of engineeringNotes) {
+    await expect(page.getByText(note.title, { exact: true })).toHaveCount(0);
+  }
+  expect(consoleMessages).toEqual([]);
+});
 
 test("mobile navigation and skip paths preserve keyboard orientation", async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 });

@@ -3,6 +3,7 @@ import Script from "next/script";
 import { Geist_Mono, Inter } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
+import { absoluteUrl, SITE_TITLE_SUFFIX, siteConfig } from "@/lib/site";
 import { ThemeProvider } from "@/components/theme-provider";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
@@ -12,38 +13,42 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-const siteUrl = "https://raphaelmansueto.com";
-const title = "Senior Full-Stack Engineer · AI Integrations | Raphael Mansueto";
-const description =
-  "Raphael Mansueto is a Senior Full-Stack Engineer specializing in AI integrations and reliable web and mobile systems. Currently a Senior Full Stack Developer at VISEO.";
-
 export const metadata: Metadata = {
-  metadataBase: new URL(siteUrl),
+  metadataBase: new URL(siteConfig.origin),
   title: {
-    default: title,
-    template: "%s | Raphael Mansueto",
+    default: siteConfig.defaultTitle,
+    template: `%s${SITE_TITLE_SUFFIX}`,
   },
-  description,
-  authors: [{ name: "Raphael Mansueto", url: siteUrl }],
-  creator: "Raphael Mansueto",
-  publisher: "Raphael Mansueto",
+  description: siteConfig.defaultDescription,
+  authors: [{ name: siteConfig.name, url: siteConfig.origin }],
+  creator: siteConfig.name,
+  publisher: siteConfig.name,
   robots: {
     index: true,
     follow: true,
   },
   openGraph: {
-    title,
-    description,
-    url: siteUrl,
-    siteName: "Raphael Mansueto",
+    title: siteConfig.defaultTitle,
+    description: siteConfig.defaultDescription,
+    url: siteConfig.origin,
+    siteName: siteConfig.name,
     locale: "en_US",
     type: "website",
+    images: [
+      {
+        url: absoluteUrl("/opengraph-image"),
+        width: 1200,
+        height: 630,
+        alt: "Raphael Mansueto — Full-Stack AI Integration Engineer",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
-    title,
-    description,
+    title: siteConfig.defaultTitle,
+    description: siteConfig.defaultDescription,
     creator: "@raphaeljamesm",
+    images: [absoluteUrl("/opengraph-image")],
   },
 };
 

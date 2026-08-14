@@ -7,6 +7,7 @@ import {
   type PublicCaseStudySlug,
 } from "./public-portfolio";
 import { isValidPublicDate } from "./public-date";
+import { searchMetadataIssues } from "@/lib/search";
 
 export interface CaseStudySection {
   id: string;
@@ -20,6 +21,8 @@ export interface CaseStudyRecord {
   publicationState: "published";
   slug: string;
   title: string;
+  seoTitle: string;
+  seoDescription: string;
   shortTitle: string;
   classification: "Employer project" | "Personal product";
   eyebrow: string;
@@ -59,6 +62,9 @@ const caseStudyRecords: CaseStudyRecord[] = [
     publicationState: "published",
     slug: "ample-news",
     title: "Ample News Production AI Workflow Case Study",
+    seoTitle: "Production AI Workflow Case Study",
+    seoDescription:
+      "A production AI case study covering grounded research, human decision gates, recoverable provider workflows, media publishing, and correlated observability.",
     shortTitle: "Ample News",
     classification: "Employer project",
     eyebrow: "Employer project · Production AI",
@@ -233,6 +239,9 @@ const caseStudyRecords: CaseStudyRecord[] = [
     publicationState: "published",
     slug: "kudoscourts",
     title: "KudosCourts Realtime Reservation Architecture Case Study",
+    seoTitle: "Realtime Reservation Architecture",
+    seoDescription:
+      "How KudosCourts uses transactional PostgreSQL commands, lifecycle events, and targeted React Query reconciliation to keep competing bookings consistent.",
     shortTitle: "KudosCourts",
     classification: "Personal product",
     eyebrow: "Full-stack product · Realtime reservations",
@@ -404,6 +413,9 @@ const caseStudyRecords: CaseStudyRecord[] = [
     publicationState: "published",
     slug: "cravingsph",
     title: "CravingsPH Transactional Restaurant Operations Case Study",
+    seoTitle: "Transactional Restaurant Architecture",
+    seoDescription:
+      "How CravingsPH coordinates concurrent orders, payments, fulfillment, realtime views, and kiosk access through deterministic transactional boundaries.",
     shortTitle: "CravingsPH",
     classification: "Personal product",
     eyebrow: "Personal product · Early partner",
@@ -564,12 +576,15 @@ function hasText(value: string | undefined) {
 
 export function validatePublishedCaseStudies(records: readonly CaseStudyRecord[]) {
   const slugs = new Set<string>();
+  const searchTitles = new Set<string>();
   const evidenceIds = new Set<string>();
 
   for (const record of records) {
     const missingFields = [
       ["slug", record.slug],
       ["title", record.title],
+      ["SEO title", record.seoTitle],
+      ["SEO description", record.seoDescription],
       ["classification", record.classification],
       ["orientation", record.orientation],
       ["status", record.status],
@@ -607,6 +622,18 @@ export function validatePublishedCaseStudies(records: readonly CaseStudyRecord[]
       throw new Error(`Duplicate published case-study slug: ${record.slug}`);
     }
     slugs.add(record.slug);
+
+    if (searchTitles.has(record.seoTitle)) {
+      throw new Error(`Duplicate case-study search title: ${record.seoTitle}`);
+    }
+    searchTitles.add(record.seoTitle);
+    const searchIssues = searchMetadataIssues({
+      title: record.seoTitle,
+      description: record.seoDescription,
+    });
+    if (searchIssues.length > 0) {
+      throw new Error(`Case study "${record.slug}" has invalid search metadata: ${searchIssues.join(", ")}`);
+    }
 
     if (!isValidPublicDate(record.publishedAt) || !isValidPublicDate(record.lastReviewed)) {
       throw new Error(`Case study "${record.slug}" has invalid publication or review metadata`);
@@ -671,10 +698,13 @@ export const caseStudies = PUBLIC_CASE_STUDY_SLUGS.map((slug, index) => {
 });
 
 if (caseStudyRecords.length !== caseStudies.length) {
-  const unlisted = caseStudyRecords
-    .filter((record) => !PUBLIC_CASE_STUDY_SLUGS.includes(record.slug as PublicCaseStudySlug))
-    .map((record) => record.slug)
-    .join(", ");
+  const unlistedRecords: string[] = [];
+  for (const record of caseStudyRecords) {
+    if (!PUBLIC_CASE_STUDY_SLUGS.includes(record.slug as PublicCaseStudySlug)) {
+      unlistedRecords.push(record.slug);
+    }
+  }
+  const unlisted = unlistedRecords.join(", ");
   throw new Error(`Published case-study records are missing from the manifest: ${unlisted}`);
 }
 

@@ -1,10 +1,17 @@
 import { caseStudies } from "@/data/case-studies";
-
-const siteUrl = "https://raphaelmansueto.com";
+import { engineeringNotes } from "@/data/engineering-notes";
+import { latestPortfolioReviewDate } from "@/data/public-content";
+import { absoluteUrl, siteConfig } from "@/lib/site";
 
 export function buildLlmsText() {
   const caseStudyLinks = caseStudies
-    .map((caseStudy) => `- ${caseStudy.shortTitle} case study: ${siteUrl}/work/${caseStudy.slug}`)
+    .map((caseStudy) => `- ${caseStudy.shortTitle} case study: ${absoluteUrl(`/work/${caseStudy.slug}`)}`)
+    .join("\n");
+  const engineeringLinks = engineeringNotes
+    .map((note) => `- ${note.title}: ${absoluteUrl(`/engineering/${note.slug}`)}`)
+    .join("\n");
+  const engineeringSummaries = engineeringNotes
+    .map((note) => `- ${note.title}: ${note.directAnswer}`)
     .join("\n");
   const featuredWork = caseStudies
     .map((caseStudy) => {
@@ -21,9 +28,11 @@ Raphael Mansueto is a Senior Full-Stack Engineer specializing in AI integrations
 
 ## Primary pages
 
-- Portfolio: ${siteUrl}/
+- Portfolio: ${siteConfig.origin}/
 ${caseStudyLinks}
-- Resume: ${siteUrl}/resume.pdf
+- Engineering notes: ${absoluteUrl("/engineering")}
+${engineeringLinks}
+- Resume: ${absoluteUrl("/resume.pdf")}
 
 ## Verified areas of work
 
@@ -37,13 +46,17 @@ ${caseStudyLinks}
 
 ${featuredWork}
 
+## Engineering notes
+
+${engineeringSummaries}
+
 ## Professional profiles
 
-- GitHub: https://github.com/raphaelmans
-- LinkedIn: https://linkedin.com/in/raphaelmansueto
-- Email: mailto:raphaelmansueto@gmail.com
+- GitHub: ${siteConfig.profiles.github}
+- LinkedIn: ${siteConfig.profiles.linkedin}
+- Email: ${siteConfig.person.email}
 
-Last reviewed: 2026-08-10
+Last reviewed: ${latestPortfolioReviewDate}
 `;
 }
 

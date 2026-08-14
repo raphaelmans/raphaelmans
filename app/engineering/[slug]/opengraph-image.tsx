@@ -1,10 +1,10 @@
 import { ImageResponse } from "next/og";
 import { PortfolioOgCard } from "@/components/brand/portfolio-og-card";
-import { getPublishedCaseStudy } from "@/data/case-studies";
+import { getPublishedEngineeringNote } from "@/data/engineering-notes";
 
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
-export const alt = "Raphael Mansueto engineering case study";
+export const alt = "Raphael Mansueto engineering note";
 
 export default async function Image({
   params,
@@ -12,15 +12,15 @@ export default async function Image({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const caseStudy = getPublishedCaseStudy(slug);
+  const note = getPublishedEngineeringNote(slug);
 
-  if (!caseStudy) return new Response("Not found", { status: 404 });
+  if (!note) return new Response("Not found", { status: 404 });
 
   return new ImageResponse(
     <PortfolioOgCard
-      eyebrow="Case study"
-      title={caseStudy.shortTitle}
-      description={caseStudy.ogSummary}
+      eyebrow="Engineering note"
+      title={note.title}
+      description={note.description}
     />,
     size
   );

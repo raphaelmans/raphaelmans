@@ -8,62 +8,48 @@ import { RecognitionSection } from "@/components/portfolio/awards-section";
 import { ContactSection } from "@/components/portfolio/contact-section";
 import { Footer } from "@/components/portfolio/footer";
 import { SkipLink } from "@/components/portfolio/skip-link";
+import { latestPortfolioReviewDate } from "@/data/public-content";
+import { personJsonLd, serializeJsonLd } from "@/lib/search";
+import { absoluteUrl, siteConfig } from "@/lib/site";
 
-const siteUrl = "https://raphaelmansueto.com";
-const title = "Senior Full-Stack Engineer · AI Integrations | Raphael Mansueto";
-const description =
-  "Raphael Mansueto is a Senior Full-Stack Engineer specializing in AI integrations and reliable web and mobile systems. Currently a Senior Full Stack Developer at VISEO.";
+const imageUrl = absoluteUrl("/opengraph-image");
 
 export const metadata: Metadata = {
-  title: { absolute: title },
-  description,
+  title: { absolute: siteConfig.defaultTitle },
+  description: siteConfig.defaultDescription,
   alternates: { canonical: "/" },
   openGraph: {
-    title,
-    description,
-    url: siteUrl,
+    title: siteConfig.defaultTitle,
+    description: siteConfig.defaultDescription,
+    url: siteConfig.origin,
     type: "profile",
+    images: [
+      {
+        url: imageUrl,
+        width: 1200,
+        height: 630,
+        alt: "Raphael Mansueto — Full-Stack AI Integration Engineer",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
-    title,
-    description,
+    title: siteConfig.defaultTitle,
+    description: siteConfig.defaultDescription,
+    images: [imageUrl],
   },
 };
 
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "ProfilePage",
-  "@id": `${siteUrl}/#profile-page`,
-  url: siteUrl,
-  name: title,
-  description,
-  dateModified: "2026-08-11",
+  "@id": `${siteConfig.origin}/#profile-page`,
+  url: siteConfig.origin,
+  name: siteConfig.defaultTitle,
+  description: siteConfig.defaultDescription,
+  dateModified: latestPortfolioReviewDate,
   mainEntity: {
-    "@type": "Person",
-    "@id": `${siteUrl}/#raphael-mansueto`,
-    name: "Raphael Mansueto",
-    jobTitle: "Senior Full Stack Developer",
-    url: siteUrl,
-    email: "mailto:raphaelmansueto@gmail.com",
-    address: {
-      "@type": "PostalAddress",
-      addressLocality: "Cebu City",
-      addressCountry: "PH",
-    },
-    worksFor: {
-      "@type": "Organization",
-      name: "VISEO",
-    },
-    alumniOf: {
-      "@type": "CollegeOrUniversity",
-      name: "Cebu Institute of Technology - University",
-    },
-    sameAs: [
-      "https://github.com/raphaelmans",
-      "https://linkedin.com/in/raphaelmansueto",
-      "https://x.com/raphaeljamesm",
-    ],
+    ...personJsonLd(),
     knowsAbout: [
       "Applied AI engineering",
       "Full-stack product engineering",
@@ -85,7 +71,7 @@ export default function Home() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
-          __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c"),
+          __html: serializeJsonLd(jsonLd),
         }}
       />
       <SkipLink />

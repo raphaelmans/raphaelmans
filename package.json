@@ -8,6 +8,7 @@
     "start": "next start",
     "lint": "eslint",
     "typecheck": "tsc --noEmit",
+    "generate:brand-assets": "tsx scripts/generate-brand-assets.ts",
     "validate:portfolio": "tsx scripts/validate-portfolio-integrity.ts",
     "test:unit": "tsx --test tests/unit/**/*.test.ts",
     "test:routes": "tsx scripts/check-public-routes.ts",

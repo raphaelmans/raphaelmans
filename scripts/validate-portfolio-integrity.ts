@@ -2,8 +2,17 @@ import { existsSync, readFileSync, statSync } from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import sitemap from "../app/sitemap";
+import robots from "../app/robots";
 import { buildLlmsText } from "../app/llms.txt/route";
 import { caseStudies } from "../data/case-studies";
+import {
+  engineeringNotes,
+  engineeringIndexSearchMetadata,
+  getPublishedEngineeringNotesForCaseStudy,
+  programmaticExpansionAllowed,
+  validateEngineeringNotes,
+} from "../data/engineering-notes";
+import { latestPortfolioReviewDate, publicSearchMetadataRecords } from "../data/public-content";
 import { experiences, featuredWork } from "../data/portfolio-data";
 import {
   PUBLIC_CASE_STUDY_SLUGS,
@@ -13,9 +22,11 @@ import {
 } from "../data/public-portfolio";
 import { evidenceRegistry, type SemanticEvidenceModel } from "../data/work-evidence";
 import { legacyWorkArtifactPaths } from "../data/legacy-work-artifacts";
+import { isValidPublicDate } from "../data/public-date";
+import { searchMetadataCollisions, searchMetadataIssues } from "../lib/search";
+import { absoluteUrl, isCanonicalSiteUrl, siteConfig } from "../lib/site";
 
 const projectRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
-const siteUrl = "https://raphaelmansueto.com";
 const failures: string[] = [];
 
 function fail(message: string) {
@@ -27,6 +38,7 @@ function sameOrder(actual: readonly string[], expected: readonly string[]) {
 }
 
 const caseStudySlugs = caseStudies.map((caseStudy) => caseStudy.slug);
+const engineeringNoteSlugs = engineeringNotes.map((note) => note.slug);
 const featuredSlugs = featuredWork.map((project) => project.slug);
 const flagshipProjects = featuredWork.filter(
   (project) => project.homepagePresentation === "flagship"
@@ -84,6 +96,46 @@ for (const [index, caseStudy] of caseStudies.entries()) {
   }
 }
 
+const homeSearchIssues = searchMetadataIssues({
+  title: siteConfig.defaultTitle,
+  description: siteConfig.defaultDescription,
+  absoluteTitle: true,
+});
+if (homeSearchIssues.length > 0) {
+  fail(`Homepage search metadata is invalid: ${homeSearchIssues.join(", ")}`);
+}
+const engineeringIndexSearchIssues = searchMetadataIssues(engineeringIndexSearchMetadata);
+if (engineeringIndexSearchIssues.length > 0) {
+  fail(`Engineering index search metadata is invalid: ${engineeringIndexSearchIssues.join(", ")}`);
+}
+for (const collision of searchMetadataCollisions(publicSearchMetadataRecords)) {
+  fail(collision);
+}
+if (engineeringNotes.length < 3 || engineeringNotes.length > 5) {
+  fail(`Initial engineering collection has ${engineeringNotes.length} notes; expected three to five`);
+}
+
+try {
+  validateEngineeringNotes(engineeringNotes, caseStudySlugs);
+} catch (error) {
+  fail(error instanceof Error ? error.message : String(error));
+}
+
+if (!isValidPublicDate(latestPortfolioReviewDate)) {
+  fail(`Derived portfolio review date is invalid: ${latestPortfolioReviewDate}`);
+}
+if (programmaticExpansionAllowed({ evidenceBackedTopicCount: engineeringNotes.length, hasRecurringSearchDemand: false })) {
+  fail("Programmatic expansion must remain disabled before the evidence and demand gates are met");
+}
+
+for (const note of engineeringNotes) {
+  for (const caseSlug of note.supportingCaseStudySlugs) {
+    if (!getPublishedEngineeringNotesForCaseStudy(caseSlug).some((candidate) => candidate.slug === note.slug)) {
+      fail(`Engineering note "${note.slug}" is not reciprocally discoverable from ${caseSlug}`);
+    }
+  }
+}
+
 const evidenceIds = new Set<string>();
 for (const [slug, models] of Object.entries(evidenceRegistry) as Array<
   [string, readonly SemanticEvidenceModel[]]
@@ -123,18 +175,58 @@ for (const legacyPath of legacyWorkArtifactPaths) {
 
 const sitemapWorkUrls = sitemap()
   .map((entry) => entry.url)
-  .filter((url) => url.startsWith(`${siteUrl}/work/`));
-const expectedSitemapUrls = PUBLIC_CASE_STUDY_SLUGS.map((slug) => `${siteUrl}${publicCaseStudyPath(slug)}`);
+  .filter((url) => url.startsWith(`${siteConfig.origin}/work/`));
+const expectedSitemapUrls = PUBLIC_CASE_STUDY_SLUGS.map((slug) => absoluteUrl(publicCaseStudyPath(slug)));
 
 if (!sameOrder(sitemapWorkUrls, expectedSitemapUrls)) {
   fail(`Sitemap work URLs are ${sitemapWorkUrls.join(", ")}; expected ${expectedSitemapUrls.join(", ")}`);
 }
 
+const sitemapEntries = sitemap();
+const expectedEngineeringUrls = [
+  absoluteUrl("/engineering"),
+  ...engineeringNoteSlugs.map((slug) => absoluteUrl(`/engineering/${slug}`)),
+];
+for (const url of expectedEngineeringUrls) {
+  if (!sitemapEntries.some((entry) => entry.url === url)) {
+    fail(`Sitemap omits published engineering URL ${url}`);
+  }
+}
+for (const entry of sitemapEntries) {
+  if (!isCanonicalSiteUrl(entry.url)) fail(`Sitemap emits a non-canonical URL: ${entry.url}`);
+}
+
+const robotsMetadata = robots();
+if (robotsMetadata.host !== siteConfig.origin) {
+  fail(`Robots host is ${String(robotsMetadata.host)}; expected ${siteConfig.origin}`);
+}
+const robotsSitemaps = Array.isArray(robotsMetadata.sitemap)
+  ? robotsMetadata.sitemap
+  : robotsMetadata.sitemap
+    ? [robotsMetadata.sitemap]
+    : [];
+for (const url of robotsSitemaps) {
+  if (!isCanonicalSiteUrl(url)) fail(`Robots emits a non-canonical sitemap URL: ${url}`);
+}
+
 const llmsText = buildLlmsText();
 for (const slug of PUBLIC_CASE_STUDY_SLUGS) {
-  const url = `${siteUrl}${publicCaseStudyPath(slug)}`;
+  const url = absoluteUrl(publicCaseStudyPath(slug));
   if (!llmsText.includes(url)) {
     fail(`llms.txt omits published case study ${url}`);
+  }
+}
+for (const slug of engineeringNoteSlugs) {
+  const url = absoluteUrl(`/engineering/${slug}`);
+  if (!llmsText.includes(url)) fail(`llms.txt omits published engineering note ${url}`);
+}
+if (!llmsText.includes(`Last reviewed: ${latestPortfolioReviewDate}`)) {
+  fail(`llms.txt does not use the derived review date ${latestPortfolioReviewDate}`);
+}
+for (const match of llmsText.matchAll(/https:\/\/[^\s)]+/g)) {
+  const url = match[0].replace(/[.,]$/, "");
+  if (url.includes("raphaelmansueto.com") && !isCanonicalSiteUrl(url)) {
+    fail(`llms.txt emits a non-canonical portfolio URL: ${url}`);
   }
 }
 
@@ -167,6 +259,6 @@ if (failures.length > 0) {
 } else {
   const evidenceCount = Object.values(evidenceRegistry).reduce((total, models) => total + models.length, 0);
   console.log(
-    `Portfolio integrity valid: ${caseStudies.length} case studies, ${featuredWork.length} featured projects, ${evidenceCount} semantic evidence models, ${legacyWorkArtifactPaths.length} legacy URLs.`
+    `Portfolio integrity valid: ${caseStudies.length} case studies, ${engineeringNotes.length} engineering notes, ${featuredWork.length} featured projects, ${evidenceCount} semantic evidence models, ${legacyWorkArtifactPaths.length} legacy URLs.`
   );
 }
