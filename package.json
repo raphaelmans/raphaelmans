@@ -13,9 +13,10 @@
     "test:unit": "tsx --test tests/unit/**/*.test.ts",
     "test:routes": "tsx scripts/check-public-routes.ts",
     "test:e2e": "playwright test",
-    "test:e2e:ci": "pnpm build && playwright test"
+    "test:e2e:ci": "PORTFOLIO_ANALYTICS_TEST_FIXTURE=visible VERCEL_WEB_ANALYTICS_TOKEN=portfolio-test-token-must-not-leak pnpm build && playwright test"
   },
   "dependencies": {
+    "@vercel/analytics": "^2.0.1",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "lucide-react": "^1.31.0",

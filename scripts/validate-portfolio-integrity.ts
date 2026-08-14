@@ -1,4 +1,4 @@
-import { existsSync, readFileSync, statSync } from "node:fs";
+import { existsSync, readFileSync, readdirSync, statSync } from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import sitemap from "../app/sitemap";
@@ -25,6 +25,7 @@ import { legacyWorkArtifactPaths } from "../data/legacy-work-artifacts";
 import { isValidPublicDate } from "../data/public-date";
 import { searchMetadataCollisions, searchMetadataIssues } from "../lib/search";
 import { absoluteUrl, isCanonicalSiteUrl, siteConfig } from "../lib/site";
+import { normalizePortfolioActivity } from "../lib/portfolio-analytics";
 
 const projectRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const failures: string[] = [];
@@ -35,6 +36,86 @@ function fail(message: string) {
 
 function sameOrder(actual: readonly string[], expected: readonly string[]) {
   return actual.length === expected.length && actual.every((value, index) => value === expected[index]);
+}
+
+function sourceFiles(directory: string): string[] {
+  if (!existsSync(directory)) return [];
+  return readdirSync(directory, { withFileTypes: true }).flatMap((entry) => {
+    const entryPath = path.join(directory, entry.name);
+    if (entry.isDirectory()) return sourceFiles(entryPath);
+    return /\.(?:ts|tsx)$/.test(entry.name) ? [entryPath] : [];
+  });
+}
+
+const runtimeSourceFiles = ["app", "components", "lib"].flatMap((directory) =>
+  sourceFiles(path.join(projectRoot, directory))
+);
+const runtimeSources = runtimeSourceFiles.map((filePath) => ({
+  filePath,
+  source: readFileSync(filePath, "utf8"),
+}));
+const rootLayoutPath = path.join(projectRoot, "app", "layout.tsx");
+const rootLayoutSource = readFileSync(rootLayoutPath, "utf8");
+const analyticsCollectorUsages = runtimeSources.flatMap(({ filePath, source }) =>
+  [...source.matchAll(/<Analytics(?:\s|\/>)/g)].map(() => filePath)
+);
+
+if (!rootLayoutSource.includes('from "@vercel/analytics/next"')) {
+  fail("Root layout must import the supported Next.js Analytics collector");
+}
+if (analyticsCollectorUsages.length !== 1 || analyticsCollectorUsages[0] !== rootLayoutPath) {
+  fail("The Analytics collector must be mounted exactly once in the root layout");
+}
+
+const analyticsServerPath = path.join(projectRoot, "lib", "vercel-web-analytics.server.ts");
+const analyticsServerSource = readFileSync(analyticsServerPath, "utf8");
+if (!/^import "server-only";/m.test(analyticsServerSource)) {
+  fail("The Vercel Web Analytics environment boundary must import server-only");
+}
+
+for (const { filePath, source } of runtimeSources) {
+  if (/NEXT_PUBLIC_[A-Z0-9_]*ANALYTICS/.test(source)) {
+    fail(`Public analytics credential naming is forbidden in ${path.relative(projectRoot, filePath)}`);
+  }
+}
+
+const analyticsProxyPaths = runtimeSourceFiles.filter((filePath) =>
+  /app[\\/]api[\\/].*analytics/i.test(filePath)
+);
+if (analyticsProxyPaths.length > 0) {
+  fail("A general public analytics proxy is forbidden");
+}
+
+const analyticsContract = normalizePortfolioActivity({
+  window: { since: "2026-07-16", until: "2026-08-14", measuredThrough: "2026-08-14" },
+  countPayload: {
+    version: 1,
+    query: { since: "2026-07-16", until: "2026-08-14" },
+    data: { pageviews: 2, visitors: 1 },
+  },
+  aggregatePayload: {
+    version: 1,
+    query: {
+      since: "2026-07-16",
+      until: "2026-08-14",
+      groupBy: ["requestPath"],
+      limit: 100,
+    },
+    data: [],
+  },
+});
+const approvedAnalyticsFields = [
+  "measuredThrough",
+  "pageViews",
+  "popularContent",
+  "visitors",
+  "windowDays",
+];
+if (
+  !analyticsContract ||
+  !sameOrder(Object.keys(analyticsContract).sort(), approvedAnalyticsFields)
+) {
+  fail("PortfolioActivity exposes fields outside the approved public aggregate contract");
 }
 
 const caseStudySlugs = caseStudies.map((caseStudy) => caseStudy.slug);

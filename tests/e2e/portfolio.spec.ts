@@ -1,4 +1,5 @@
 import { expect, test, type Page } from "@playwright/test";
+import { execFileSync } from "node:child_process";
 import { caseStudies } from "../../data/case-studies";
 import { engineeringNotes } from "../../data/engineering-notes";
 import { latestPortfolioReviewDate } from "../../data/public-content";
@@ -192,7 +193,9 @@ test("engineering notes preserve progressive disclosure across themes and viewpo
   await page.goto("/");
   await expect(page.getByRole("link", { name: "Engineering notes" })).toHaveCount(1);
   for (const note of engineeringNotes) {
-    await expect(page.getByText(note.title, { exact: true })).toHaveCount(0);
+    await expect(
+      page.locator("main > section").getByText(note.title, { exact: true })
+    ).toHaveCount(0);
   }
   expect(consoleMessages).toEqual([]);
 });
@@ -249,6 +252,106 @@ test("header anchors use native smooth scrolling with one sticky offset", async 
 
   await page.emulateMedia({ reducedMotion: "reduce" });
   await expect.poll(() => page.locator("html").evaluate((element) => getComputedStyle(element).scrollBehavior)).toBe("auto");
+});
+
+test("portfolio activity remains a restrained, accessible footer disclosure", async ({ page }) => {
+  const consoleMessages = collectUnexpectedConsole(page);
+
+  for (const theme of ["light", "dark"] as const) {
+    await page.setViewportSize({ width: 390, height: 844 });
+    await page.goto("/");
+    await page.evaluate((selectedTheme) => localStorage.setItem("theme", selectedTheme), theme);
+    await page.reload();
+
+    const activity = page.getByRole("complementary", { name: "Portfolio activity" });
+    await expect(activity).toBeVisible();
+    await expect(activity.getByText("Anonymous aggregates · Last 30 days", { exact: false })).toBeVisible();
+    await expect(activity.getByText("428", { exact: true })).toBeVisible();
+    await expect(activity.getByText("812", { exact: true })).toBeVisible();
+    await expect(activity.getByRole("link", { name: /Ample News/ })).toHaveAttribute(
+      "href",
+      "/work/ample-news"
+    );
+    await expect(activity.getByRole("link", { name: /KudosCourts/ })).toHaveAttribute(
+      "href",
+      "/work/kudoscourts"
+    );
+    await expect(activity.getByRole("link")).toHaveCount(3);
+
+    const followsContact = await activity.evaluate((region) => {
+      const contact = document.querySelector("#contact");
+      return Boolean(
+        contact &&
+          (contact.compareDocumentPosition(region) & Node.DOCUMENT_POSITION_FOLLOWING) !== 0
+      );
+    });
+    expect(followsContact).toBe(true);
+    expect(
+      await page.evaluate(
+        () => document.documentElement.scrollWidth <= document.documentElement.clientWidth
+      )
+    ).toBe(true);
+
+    const firstRankedLink = activity.getByRole("link").first();
+    await firstRankedLink.focus();
+    await expect(firstRankedLink).toBeFocused();
+    const target = await firstRankedLink.boundingBox();
+    expect(target?.height).toBeGreaterThanOrEqual(44);
+  }
+
+  await page.setViewportSize({ width: 1440, height: 1000 });
+  await page.goto("/");
+  const desktopActivity = page.getByRole("complementary", { name: "Portfolio activity" });
+  await expect(desktopActivity).toBeVisible();
+  expect(await desktopActivity.evaluate((element) => element.scrollWidth <= element.clientWidth)).toBe(true);
+  expect(consoleMessages).toEqual([]);
+});
+
+test("portfolio activity browser output handles totals-only and unavailable states", async ({ page }) => {
+  const renderFixture = (state: "totals" | "unavailable") =>
+    execFileSync(
+      "pnpm",
+      ["exec", "tsx", "tests/helpers/render-portfolio-activity-fixture.ts", state],
+      { encoding: "utf8" }
+    );
+  const totalsOnlyMarkup = renderFixture("totals");
+  await page.setContent(totalsOnlyMarkup);
+  await expect(page.getByRole("complementary", { name: "Portfolio activity" })).toBeVisible();
+  await expect(page.getByText("Most viewed", { exact: true })).toHaveCount(0);
+  await expect(page.getByRole("link")).toHaveCount(0);
+
+  const unavailableMarkup = renderFixture("unavailable");
+  await page.setContent(unavailableMarkup);
+  await expect(page.getByRole("complementary", { name: "Portfolio activity" })).toHaveCount(0);
+});
+
+test("analytics credentials and provider-only fields never reach rendered output", async ({ page, request }) => {
+  await page.goto("/");
+  const forbidden = [
+    "portfolio-test-token-must-not-leak",
+    "Authorization",
+    "referrerHostname",
+    "deviceType",
+  ];
+  const html = await page.content();
+
+  for (const value of forbidden) expect(html).not.toContain(value);
+
+  const localScripts = await page.locator('script[src^="/_next/"]').evaluateAll((scripts) =>
+    scripts.map((script) => (script as HTMLScriptElement).src)
+  );
+  for (const source of localScripts) {
+    const script = await (await request.get(source)).text();
+    for (const value of forbidden) expect(script).not.toContain(value);
+  }
+
+  const analyticsRequests = await page.evaluate(() =>
+    performance
+      .getEntriesByType("resource")
+      .map((entry) => entry.name)
+      .filter((name) => name.includes("/_vercel/insights/"))
+  );
+  expect(analyticsRequests).toEqual([]);
 });
 
 test("mobile primary and utility actions meet the interaction target contract", async ({ page }) => {
